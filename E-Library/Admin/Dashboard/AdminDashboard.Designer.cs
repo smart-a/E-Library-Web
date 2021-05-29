@@ -58,6 +58,7 @@ namespace E_Library.Admin.Dashboard
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(730, 86);
             this.panel2.TabIndex = 10;
+            this.panel2.TabStop = true;
             // 
             // panel3
             // 
@@ -69,6 +70,7 @@ namespace E_Library.Admin.Dashboard
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(730, 79);
             this.panel3.TabIndex = 0;
+            this.panel3.TabStop = true;
             // 
             // btnUser
             // 
@@ -102,12 +104,10 @@ namespace E_Library.Admin.Dashboard
             // menuLogout
             // 
             this.menuLogout.AllowHtml = true;
-            this.menuLogout.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.menuLogout.ForeColor = System.Drawing.Color.FromName("@buttonFace");
             this.menuLogout.IconSource = "resource.wx/Wisej.Ext.FontAwesome/reply.svg";
             this.menuLogout.Index = 1;
             this.menuLogout.Name = "menuLogout";
-            this.menuLogout.Text = "<div style=\"padding: 8px\">Logout</div>";
+            this.menuLogout.Text = "Logout";
             // 
             // btnNavShow
             // 
@@ -123,7 +123,6 @@ namespace E_Library.Admin.Dashboard
             this.btnNavShow.Size = new System.Drawing.Size(49, 37);
             this.btnNavShow.TabIndex = 8;
             this.btnNavShow.Tag = "show";
-            this.btnNavShow.Visible = false;
             this.btnNavShow.Click += new System.EventHandler(this.btnNavShow_Click);
             // 
             // navigationBar1
@@ -208,6 +207,7 @@ namespace E_Library.Admin.Dashboard
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(730, 430);
             this.panelMain.TabIndex = 12;
+            this.panelMain.TabStop = true;
             // 
             // AdminDashboard
             // 
@@ -224,6 +224,7 @@ namespace E_Library.Admin.Dashboard
             this.Name = "AdminDashboard";
             this.Text = "AdminDashboard";
             this.WindowState = Wisej.Web.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.AdminDashboard_Load);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);

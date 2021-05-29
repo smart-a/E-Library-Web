@@ -13,17 +13,22 @@ namespace E_Library.Dashboard
         ApplicationDbContext _context;
         User currentUser;
         UserSubscription currentSub;
+        object MyParent;
 
-        public LibrayControl(User user)
+        public LibrayControl(object Owner, User user)
         {
             InitializeComponent();
             _context = new ApplicationDbContext();
             currentUser = user;
+            MyParent = Owner;
         }
 
         private void LibrayControl_Load(object sender, EventArgs e)
         {
-
+            if(currentUser.UserType == User.UserEnum.Student)
+            {
+                panelSub.Enabled = false;
+            }
         }
 
         private void LibrayControl_Appear(object sender, EventArgs e)
@@ -38,20 +43,22 @@ namespace E_Library.Dashboard
             {
                 _context = new ApplicationDbContext();
                 subBookList = _context.Books.Where((b) => b.Subscription.Id == currentSub.Subscription.Id).ToList();
+                if(currentUser.UserType == User.UserEnum.Student)
+                {
+                    subBookList = _context.Books.ToList();
+                }
             }
 
             var books = subBookList.Select((b) =>
-                 new
+                 new BookDisplay
                  {
-                     b.Id,
+                     Id = b.Id,
                      Category = b.Category.CategoryName,
                      BookName = b.BookName,
                      Course = b.Course.CourseName,
                      Subscription = b.Subscription.SubscriptionName,
                      Amount = b.Subscription.Amount.ToString("###,##0.00")
-                 }).ToList<object>();
-
-            //usersList = new BindingList<object>(users);
+                 }).ToList();
 
             dataGridView1.DataSource = books;
             dataGridView1.Columns["Id"].Visible = false;
@@ -72,37 +79,34 @@ namespace E_Library.Dashboard
 
         public void LoadSub()
         {
-            CheckSub();
-
             currentSub = _context.UserSubscriptions.SingleOrDefault((b) =>
                     b.User.Id == currentUser.Id && b.SubStatus == 1);
 
-            tagTextSub.Text = currentSub.Subscription.SubscriptionName;
-            panelSubBook.Enabled = true;
+
             if (currentSub == null)
             {
                 tagTextSub.Text = "No active subscription";
                 panelSubBook.Enabled = false;
+                return;
             }
-            else
-            {
-                LoadCategories();
-                LoadBooks();
-            }
+
+            CheckSub();
+            LoadCategories();
+            LoadBooks();
         }
 
         private void CheckSub()
         {
-            _context = new ApplicationDbContext();
-            var curSub = _context.UserSubscriptions.SingleOrDefault((b) =>
-                    b.User.Id == currentUser.Id && b.SubStatus == 1);
-            var dateDiff = (DateTime.Now - curSub.SubDate).Days;
-            if(dateDiff > 0)
+            var dateDiff = (DateTime.Now - currentSub.SubDate).Days;
+            if (dateDiff > 0)
             {
-                curSub.SubStatus = 0;
-                _context.Entry(curSub).State = System.Data.Entity.EntityState.Modified;
+                currentSub.SubStatus = 0;
+                _context.Entry(currentSub).State = System.Data.Entity.EntityState.Modified;
                 _context.SaveChanges();
             }
+
+            tagTextSub.Text = currentSub.Subscription.SubscriptionName;
+            panelSubBook.Enabled = true;
         }
 
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,15 +119,21 @@ namespace E_Library.Dashboard
             }
             var subBookList = _context.Books.Where((b) => b.Subscription.Id == currentSub.Subscription.Id &&
                 b.Category.CategoryName == cbCategory.Text).ToList();
+            if (currentUser.UserType == User.UserEnum.Student)
+            {
+                subBookList = _context.Books.Where((b) => b.Category.CategoryName == cbCategory.Text).ToList();
+            }
             LoadBooks(subBookList);
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var currentBook = (Book)dataGridView1.CurrentRow.DataBoundItem;
+            var Id = Guid.Parse(dataGridView1.CurrentRow[0].Value.ToString());
+            var currentBook = _context.Books.SingleOrDefault((b) => b.Id == Id);
             if (currentBook != null)
             {
-
+                BookDetails bookDetails = new BookDetails(MyParent, currentUser, currentBook);
+                bookDetails.ShowDialog();
             }
         }
 
@@ -135,9 +145,29 @@ namespace E_Library.Dashboard
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (txtSearch.Text == "")
+            {
+                LoadBooks();
+                return;
+            }
             var subBookList = _context.Books.Where((b) => b.Subscription.Id == currentSub.Subscription.Id &&
                b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (cbCategory.SelectedIndex >1)
+            {
+                subBookList = _context.Books.Where((b) => b.Subscription.Id == currentSub.Subscription.Id &&
+                b.Category.CategoryName == cbCategory.Text &&
+                b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
 
+            if (currentUser.UserType == User.UserEnum.Student)
+            {
+                subBookList = _context.Books.Where((b) => b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                if (cbCategory.SelectedIndex > 1)
+                {
+                    subBookList = _context.Books.Where((b) => b.Category.CategoryName == cbCategory.Text &&
+                    b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                }
+            }
             LoadBooks(subBookList);
         }
 

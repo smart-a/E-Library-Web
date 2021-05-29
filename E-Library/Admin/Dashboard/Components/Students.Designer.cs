@@ -65,6 +65,7 @@ namespace E_Library.Admin.Dashboard.Components
             this.panel1.ShowHeader = true;
             this.panel1.Size = new System.Drawing.Size(315, 76);
             this.panel1.TabIndex = 15;
+            this.panel1.TabStop = true;
             this.panel1.Text = "Level";
             // 
             // cbLevel
@@ -79,7 +80,6 @@ namespace E_Library.Admin.Dashboard.Components
             "300",
             "400",
             "500"});
-            this.cbLevel.LabelText = null;
             this.cbLevel.Location = new System.Drawing.Point(13, 3);
             this.cbLevel.Name = "cbLevel";
             this.cbLevel.Size = new System.Drawing.Size(302, 42);
@@ -99,6 +99,7 @@ namespace E_Library.Admin.Dashboard.Components
             this.panel3.ShowHeader = true;
             this.panel3.Size = new System.Drawing.Size(315, 67);
             this.panel3.TabIndex = 14;
+            this.panel3.TabStop = true;
             this.panel3.Text = "Gender";
             // 
             // radioFemale
@@ -115,7 +116,7 @@ namespace E_Library.Admin.Dashboard.Components
             this.radioMale.Checked = true;
             this.radioMale.Location = new System.Drawing.Point(28, 7);
             this.radioMale.Name = "radioMale";
-            this.radioMale.Size = new System.Drawing.Size(66, 26);
+            this.radioMale.Size = new System.Drawing.Size(67, 26);
             this.radioMale.TabIndex = 6;
             this.radioMale.TabStop = true;
             this.radioMale.Text = "Male";
@@ -163,7 +164,6 @@ namespace E_Library.Admin.Dashboard.Components
             this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.Text = "Students";
             this.Load += new System.EventHandler(this.Students_Load);
-            this.FormClosed += new Wisej.Web.FormClosedEventHandler(this.Students_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

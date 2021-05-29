@@ -29,10 +29,10 @@ namespace E_Library.Admin.Dashboard
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle1 = new Wisej.Web.DataGridViewCellStyle();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle2 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle4 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle5 = new Wisej.Web.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentsControl));
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle3 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle6 = new Wisej.Web.DataGridViewCellStyle();
             this.panel5 = new Wisej.Web.Panel();
             this.btnRefresh = new Wisej.Web.Button();
             this.dtpTo = new Wisej.Web.DateTimePicker();
@@ -65,6 +65,7 @@ namespace E_Library.Admin.Dashboard
             this.panel5.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel5.ResponsiveProfiles"))));
             this.panel5.Size = new System.Drawing.Size(701, 639);
             this.panel5.TabIndex = 13;
+            this.panel5.TabStop = true;
             // 
             // btnRefresh
             // 
@@ -84,7 +85,7 @@ namespace E_Library.Admin.Dashboard
             this.dtpTo.LabelText = "To";
             this.dtpTo.Location = new System.Drawing.Point(126, 94);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(98, 43);
+            this.dtpTo.Size = new System.Drawing.Size(98, 44);
             this.dtpTo.TabIndex = 7;
             this.dtpTo.Value = new System.DateTime(2021, 5, 16, 16, 40, 56, 708);
             this.dtpTo.ValueChanged += new System.EventHandler(this.dtpTo_ValueChanged);
@@ -97,7 +98,7 @@ namespace E_Library.Admin.Dashboard
             this.dtpFrom.LabelText = "From";
             this.dtpFrom.Location = new System.Drawing.Point(22, 94);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(98, 43);
+            this.dtpFrom.Size = new System.Drawing.Size(98, 44);
             this.dtpFrom.TabIndex = 6;
             this.dtpFrom.Value = new System.DateTime(2021, 5, 16, 16, 40, 56, 708);
             this.dtpFrom.ValueChanged += new System.EventHandler(this.dtpFrom_ValueChanged);
@@ -126,28 +127,31 @@ namespace E_Library.Admin.Dashboard
             // 
             this.dataGridView1.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
             | Wisej.Web.AnchorStyles.Right)));
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Location = new System.Drawing.Point(22, 151);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("dataGridView1.ResponsiveProfiles"))));
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.Size = new System.Drawing.Size(651, 428);
             this.dataGridView1.TabIndex = 0;
             // 
             // panel1
             // 
+            this.panel1.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.lblPaymentReceived);
             this.panel1.Controls.Add(this.lblPaymentCaption);
+            this.panel1.CssStyle = "box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;";
             this.panel1.Location = new System.Drawing.Point(53, 45);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(696, 68);
             this.panel1.TabIndex = 14;
+            this.panel1.TabStop = true;
             // 
             // pictureBox2
             // 
@@ -165,7 +169,7 @@ namespace E_Library.Admin.Dashboard
             this.lblPaymentReceived.ForeColor = System.Drawing.Color.Green;
             this.lblPaymentReceived.Location = new System.Drawing.Point(307, 23);
             this.lblPaymentReceived.Name = "lblPaymentReceived";
-            this.lblPaymentReceived.Size = new System.Drawing.Size(82, 23);
+            this.lblPaymentReceived.Size = new System.Drawing.Size(80, 23);
             this.lblPaymentReceived.TabIndex = 10;
             this.lblPaymentReceived.Text = "N12,500";
             this.lblPaymentReceived.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -182,6 +186,7 @@ namespace E_Library.Admin.Dashboard
             // 
             // PaymentsControl
             // 
+            this.AutoScroll = true;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
             this.Name = "PaymentsControl";

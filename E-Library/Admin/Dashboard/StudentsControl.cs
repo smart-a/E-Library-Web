@@ -12,7 +12,6 @@ namespace E_Library.Admin.Dashboard
     public partial class StudentsControl : Wisej.Web.UserControl
     {
         ApplicationDbContext _context;
-        BindingList<object> usersList;
 
         public StudentsControl()
         {
@@ -34,15 +33,22 @@ namespace E_Library.Admin.Dashboard
                 usersList = _context.Users.Where((u) => u.UserType == User.UserEnum.Student).ToList();
             }
 
-
-            var users = usersList.Select((u) => new { u.Id, u.StudentNumber, u.Fullname, u.Gender, u.Level }).ToList<object>();
+            var users = usersList.Select((u) =>
+                new UserDisplay
+                { 
+                    Id = u.Id,
+                    StudentNumber =u.StudentNumber,
+                    Fullname = u.Fullname,
+                    Gender = u.Gender,
+                    Level = u.Level 
+                }).ToList();
 
             dataGridView1.DataSource = users;
             dataGridView1.Columns["Id"].Visible = false;
 
             dataGridView1.Columns["StudentNumber"].HeaderText = "Student Number";
             dataGridView1.Columns["StudentNumber"].Width = 150;
-            dataGridView1.Columns["Fullname"].Width = 250;
+            dataGridView1.Columns["Fullname"].Width = 200;
 
         }
 
@@ -55,7 +61,8 @@ namespace E_Library.Admin.Dashboard
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var currentUser = (User)dataGridView1.CurrentRow.DataBoundItem;
+            var index = Guid.Parse(dataGridView1.CurrentRow[0].Value.ToString());
+            var currentUser = _context.Users.SingleOrDefault((u)=>u.Id==index);
             if (currentUser != null)
             {
                 DialogResult dialogResult;
@@ -79,12 +86,16 @@ namespace E_Library.Admin.Dashboard
                         LoadUsers();
                     }
                 }
-
             }
         }
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (txtSearch.Text == "")
+            {
+                LoadUsers();
+                return;
+            }
             var users = _context.Users.Where((u) =>
                 u.StudentNumber.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase) ||
                 u.Fullname.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();

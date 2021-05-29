@@ -29,7 +29,7 @@ namespace E_Library.Admin.Dashboard.Components
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.ComponentTool componentTool4 = new Wisej.Web.ComponentTool();
+            Wisej.Web.ComponentTool componentTool1 = new Wisej.Web.ComponentTool();
             this.txtBookName = new Wisej.Web.TextBox();
             this.panel1 = new Wisej.Web.Panel();
             this.cbCategory = new Wisej.Web.ComboBox();
@@ -38,6 +38,7 @@ namespace E_Library.Admin.Dashboard.Components
             this.panel3 = new Wisej.Web.Panel();
             this.cbSub = new Wisej.Web.ComboBox();
             this.panelFile = new Wisej.Web.Panel();
+            this.upload1 = new Wisej.Web.Upload();
             this.button1 = new Wisej.Web.Button();
             this.label1 = new Wisej.Web.Label();
             this.btnSave = new Wisej.Web.Button();
@@ -71,6 +72,7 @@ namespace E_Library.Admin.Dashboard.Components
             this.panel1.ShowHeader = true;
             this.panel1.Size = new System.Drawing.Size(315, 76);
             this.panel1.TabIndex = 16;
+            this.panel1.TabStop = true;
             this.panel1.Text = "Category";
             // 
             // cbCategory
@@ -85,7 +87,6 @@ namespace E_Library.Admin.Dashboard.Components
             "300",
             "400",
             "500"});
-            this.cbCategory.LabelText = null;
             this.cbCategory.Location = new System.Drawing.Point(13, 3);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(302, 42);
@@ -104,6 +105,7 @@ namespace E_Library.Admin.Dashboard.Components
             this.panel2.ShowHeader = true;
             this.panel2.Size = new System.Drawing.Size(315, 76);
             this.panel2.TabIndex = 17;
+            this.panel2.TabStop = true;
             this.panel2.Text = "Course";
             // 
             // cbCourse
@@ -118,7 +120,6 @@ namespace E_Library.Admin.Dashboard.Components
             "300",
             "400",
             "500"});
-            this.cbCourse.LabelText = null;
             this.cbCourse.Location = new System.Drawing.Point(13, 3);
             this.cbCourse.Name = "cbCourse";
             this.cbCourse.Size = new System.Drawing.Size(302, 42);
@@ -137,6 +138,7 @@ namespace E_Library.Admin.Dashboard.Components
             this.panel3.ShowHeader = true;
             this.panel3.Size = new System.Drawing.Size(315, 76);
             this.panel3.TabIndex = 18;
+            this.panel3.TabStop = true;
             this.panel3.Text = "Subscription";
             // 
             // cbSub
@@ -151,7 +153,6 @@ namespace E_Library.Admin.Dashboard.Components
             "300",
             "400",
             "500"});
-            this.cbSub.LabelText = null;
             this.cbSub.Location = new System.Drawing.Point(13, 3);
             this.cbSub.Name = "cbSub";
             this.cbSub.Size = new System.Drawing.Size(302, 42);
@@ -160,9 +161,12 @@ namespace E_Library.Admin.Dashboard.Components
             // 
             // panelFile
             // 
+            this.panelFile.AllowDrag = true;
             this.panelFile.AllowDrop = true;
+            this.panelFile.BackgroundImageLayout = Wisej.Web.ImageLayout.Center;
             this.panelFile.BackgroundImageSource = "resource.wx/Wisej.Ext.FontAwesome/cloud-upload.svg";
             this.panelFile.BorderStyle = Wisej.Web.BorderStyle.Solid;
+            this.panelFile.Controls.Add(this.upload1);
             this.panelFile.Controls.Add(this.button1);
             this.panelFile.Controls.Add(this.label1);
             this.panelFile.CssStyle = "border-radius: 3px;";
@@ -171,11 +175,23 @@ namespace E_Library.Admin.Dashboard.Components
             this.panelFile.Name = "panelFile";
             this.panelFile.Size = new System.Drawing.Size(303, 85);
             this.panelFile.TabIndex = 19;
-            componentTool4.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/cloud-upload.svg";
+            this.panelFile.TabStop = true;
+            componentTool1.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/cloud-upload.svg";
             this.panelFile.Tools.AddRange(new Wisej.Web.ComponentTool[] {
-            componentTool4});
+            componentTool1});
+            this.panelFile.Click += new System.EventHandler(this.panelFile_Click);
             this.panelFile.DragDrop += new Wisej.Web.DragEventHandler(this.panelFile_DragDrop);
             this.panelFile.DragEnter += new Wisej.Web.DragEventHandler(this.panelFile_DragEnter);
+            // 
+            // upload1
+            // 
+            this.upload1.Location = new System.Drawing.Point(13, 3);
+            this.upload1.Name = "upload1";
+            this.upload1.Size = new System.Drawing.Size(73, 25);
+            this.upload1.TabIndex = 2;
+            this.upload1.Text = "upload1";
+            this.upload1.Visible = false;
+            this.upload1.Uploaded += new Wisej.Web.UploadedEventHandler(this.upload1_Uploaded);
             // 
             // button1
             // 
@@ -254,5 +270,6 @@ namespace E_Library.Admin.Dashboard.Components
         private Wisej.Web.Label label1;
         private Wisej.Web.Button btnSave;
         private Wisej.Web.Button button1;
+        private Wisej.Web.Upload upload1;
     }
 }

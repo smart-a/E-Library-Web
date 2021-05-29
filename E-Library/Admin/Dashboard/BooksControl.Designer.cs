@@ -35,12 +35,12 @@ namespace E_Library.Admin.Dashboard
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle2 = new Wisej.Web.DataGridViewCellStyle();
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle3 = new Wisej.Web.DataGridViewCellStyle();
             this.panel5 = new Wisej.Web.Panel();
+            this.btnRefresh = new Wisej.Web.Button();
             this.pictureBox1 = new Wisej.Web.PictureBox();
             this.label1 = new Wisej.Web.Label();
             this.txtSearch = new Wisej.Web.TextBox();
             this.btnAddNew = new Wisej.Web.Button();
             this.dataGridView1 = new Wisej.Web.DataGridView();
-            this.btnRefresh = new Wisej.Web.Button();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -48,8 +48,7 @@ namespace E_Library.Admin.Dashboard
             // 
             // panel5
             // 
-            this.panel5.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
-            | Wisej.Web.AnchorStyles.Right)));
+            this.panel5.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel5.Controls.Add(this.btnRefresh);
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.label1);
@@ -61,6 +60,17 @@ namespace E_Library.Admin.Dashboard
             this.panel5.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel5.ResponsiveProfiles"))));
             this.panel5.Size = new System.Drawing.Size(701, 639);
             this.panel5.TabIndex = 12;
+            this.panel5.TabStop = true;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
+            this.btnRefresh.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/refresh.svg";
+            this.btnRefresh.Location = new System.Drawing.Point(270, 109);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(33, 28);
+            this.btnRefresh.TabIndex = 11;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // pictureBox1
             // 
@@ -85,11 +95,10 @@ namespace E_Library.Admin.Dashboard
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtSearch.LabelText = "";
             this.txtSearch.Location = new System.Drawing.Point(22, 108);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Padding = new Wisej.Web.Padding(5);
-            this.txtSearch.Size = new System.Drawing.Size(235, 29);
+            this.txtSearch.Size = new System.Drawing.Size(235, 30);
             this.txtSearch.TabIndex = 3;
             componentTool1.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/search.svg";
             this.txtSearch.Tools.AddRange(new Wisej.Web.ComponentTool[] {
@@ -129,23 +138,15 @@ namespace E_Library.Admin.Dashboard
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(651, 428);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new Wisej.Web.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.RowHeaderMouseClick += new Wisej.Web.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
-            this.btnRefresh.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/refresh.svg";
-            this.btnRefresh.Location = new System.Drawing.Point(270, 109);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(33, 28);
-            this.btnRefresh.TabIndex = 11;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // BooksControl
             // 
+            this.AutoScroll = true;
             this.Controls.Add(this.panel5);
             this.Name = "BooksControl";
-            this.Size = new System.Drawing.Size(800, 529);
+            this.Size = new System.Drawing.Size(800, 777);
             this.Appear += new System.EventHandler(this.BooksControl_Appear);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();

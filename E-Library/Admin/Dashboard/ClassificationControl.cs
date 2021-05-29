@@ -26,7 +26,7 @@ namespace E_Library.Admin.Dashboard
             dataGridView1.DataSource = categories;
             dataGridView1.Columns["Id"].Visible = false;
             dataGridView1.Columns["CategoryName"].HeaderText = "Category Name";
-            dataGridView1.Columns["CategoryName"].Width = 150;
+            dataGridView1.Columns["CategoryName"].Width = 300;
         }
 
         public void LoadCourse()
@@ -35,7 +35,7 @@ namespace E_Library.Admin.Dashboard
             dataGridView2.DataSource = courses;
             dataGridView2.Columns["Id"].Visible = false;
             dataGridView2.Columns["CourseName"].HeaderText = "Course Name";
-            dataGridView2.Columns["CourseName"].Width = 150;
+            dataGridView2.Columns["CourseName"].Width = 300;
         }
 
         public void LoadSubscription()
@@ -44,8 +44,7 @@ namespace E_Library.Admin.Dashboard
             dataGridView3.DataSource = sub;
             dataGridView3.Columns["Id"].Visible = false;
             dataGridView3.Columns["SubscriptionName"].HeaderText = "Subscription Name";
-            dataGridView3.Columns["SubscriptionName"].Width = 150;
-            //dataGridView3.Columns["Amount"]
+            dataGridView3.Columns["SubscriptionName"].Width = 200;
         }
 
         private void btnAddCategory_Click(object sender, EventArgs e)
@@ -58,7 +57,6 @@ namespace E_Library.Admin.Dashboard
             }
             try
             {
-                _context = new ApplicationDbContext();
                 if (category == null)
                 {
                     Category newCategory = new Category { CategoryName = txtCategory.Text };
@@ -90,7 +88,6 @@ namespace E_Library.Admin.Dashboard
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
-                    _context = new ApplicationDbContext();
                     _context.Categories.Remove(category);
                     _context.SaveChanges();
                     MessageBox.Show("Category removed");
@@ -114,13 +111,12 @@ namespace E_Library.Admin.Dashboard
             }
             try
             {
-                _context = new ApplicationDbContext();
-                if (category == null)
+                if (course == null)
                 {
                     Course newCourse = new Course { CourseName = txtCourse.Text };
                     _context.Courses.Add(newCourse);
                     _context.SaveChanges();
-                    MessageBox.Show("New category added");
+                    MessageBox.Show("New course added");
                 }
                 else
                 {
@@ -146,7 +142,6 @@ namespace E_Library.Admin.Dashboard
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
-                    _context = new ApplicationDbContext();
                     _context.Courses.Remove(course);
                     _context.SaveChanges();
                     MessageBox.Show("Course removed");
@@ -176,7 +171,6 @@ namespace E_Library.Admin.Dashboard
             }
             try
             {
-                _context = new ApplicationDbContext();
                 if (subscription == null)
                 {
                     Subscription newSub = new Subscription
@@ -213,7 +207,6 @@ namespace E_Library.Admin.Dashboard
                         MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.OK)
                 {
-                    _context = new ApplicationDbContext();
                     _context.Subscriptions.Remove(subscription);
                     _context.SaveChanges();
                     MessageBox.Show("Subscription removed");
@@ -236,6 +229,7 @@ namespace E_Library.Admin.Dashboard
                 panelCategory.Visible = false;
                 btnAddCategory.Text = "Save";
                 category = null;
+                txtCategory.Focus();
             }
             else if (section == "course")
             {
@@ -244,6 +238,7 @@ namespace E_Library.Admin.Dashboard
                 panelCourse.Visible = false;
                 btnAddCourse.Text = "Save";
                 course = null;
+                txtCourse.Focus();
             }
             else
             {
@@ -253,12 +248,15 @@ namespace E_Library.Admin.Dashboard
                 panelSub.Visible = false;
                 btnAddSub.Text = "Save";
                 subscription = null;
+                txtSub.Focus();
             }
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            category = (Category)dataGridView1.CurrentRow.DataBoundItem;
+            _context = new ApplicationDbContext();
+            var index = Guid.Parse(dataGridView1.CurrentRow[0].Value.ToString());
+            category = _context.Categories.SingleOrDefault((c) => c.Id == index);
             if (category != null)
             {
                 txtCategory.Text = category.CategoryName;
@@ -269,7 +267,9 @@ namespace E_Library.Admin.Dashboard
 
         private void dataGridView2_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            course = (Course)dataGridView1.CurrentRow.DataBoundItem;
+            _context = new ApplicationDbContext();
+            var index = Guid.Parse(dataGridView2.CurrentRow[0].Value.ToString());
+            course = _context.Courses.SingleOrDefault((c) => c.Id == index);
             if (course != null)
             {
                 txtCourse.Text = course.CourseName;
@@ -280,7 +280,9 @@ namespace E_Library.Admin.Dashboard
 
         private void dataGridView3_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            subscription = (Subscription)dataGridView1.CurrentRow.DataBoundItem;
+            _context = new ApplicationDbContext();
+            var index = Guid.Parse(dataGridView3.CurrentRow[0].Value.ToString());
+            subscription = _context.Subscriptions.SingleOrDefault((s) => s.Id == index);
             if (subscription != null)
             {
                 txtSub.Text = subscription.SubscriptionName;

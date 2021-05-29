@@ -63,6 +63,7 @@ namespace E_Library.Login
             this.flowLayoutPanel1.ShowCloseButton = false;
             this.flowLayoutPanel1.Size = new System.Drawing.Size(803, 1150);
             this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.TabStop = true;
             // 
             // panel1
             // 
@@ -72,6 +73,7 @@ namespace E_Library.Login
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(598, 488);
             this.panel1.TabIndex = 0;
+            this.panel1.TabStop = true;
             // 
             // pictureBox1
             // 
@@ -90,6 +92,7 @@ namespace E_Library.Login
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(603, 498);
             this.panel2.TabIndex = 1;
+            this.panel2.TabStop = true;
             // 
             // panel7
             // 
@@ -104,6 +107,7 @@ namespace E_Library.Login
             this.panel7.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel7.ResponsiveProfiles"))));
             this.panel7.Size = new System.Drawing.Size(597, 387);
             this.panel7.TabIndex = 1;
+            this.panel7.TabStop = true;
             // 
             // label4
             // 
@@ -134,6 +138,7 @@ namespace E_Library.Login
             this.panelMsg.ShowCloseButton = false;
             this.panelMsg.Size = new System.Drawing.Size(448, 60);
             this.panelMsg.TabIndex = 8;
+            this.panelMsg.TabStop = true;
             this.panelMsg.Visible = false;
             // 
             // lblMsg
@@ -147,7 +152,7 @@ namespace E_Library.Login
             this.lblMsg.Location = new System.Drawing.Point(18, 19);
             this.lblMsg.Name = "lblMsg";
             this.lblMsg.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("lblMsg.ResponsiveProfiles"))));
-            this.lblMsg.Size = new System.Drawing.Size(95, 21);
+            this.lblMsg.Size = new System.Drawing.Size(96, 21);
             this.lblMsg.TabIndex = 1;
             this.lblMsg.Text = "Some Error";
             // 
@@ -158,7 +163,7 @@ namespace E_Library.Login
             this.btnCloseMsg.BackColor = System.Drawing.Color.Transparent;
             this.btnCloseMsg.BorderStyle = Wisej.Web.BorderStyle.None;
             this.btnCloseMsg.Focusable = false;
-            this.btnCloseMsg.Font = new System.Drawing.Font("default", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnCloseMsg.Font = new System.Drawing.Font("@default", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.btnCloseMsg.ForeColor = System.Drawing.Color.FromArgb(153, 45, 36);
             this.btnCloseMsg.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/times.svg";
             this.btnCloseMsg.Location = new System.Drawing.Point(408, 10);
@@ -190,7 +195,6 @@ namespace E_Library.Login
             this.txtPassword.CssStyle = "border-radius: 4px";
             this.txtPassword.Font = new System.Drawing.Font("default", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPassword.InputType.Type = Wisej.Web.TextBoxType.Password;
-            this.txtPassword.LabelText = "";
             this.txtPassword.Location = new System.Drawing.Point(72, 165);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Padding = new Wisej.Web.Padding(15);
@@ -199,13 +203,13 @@ namespace E_Library.Login
             this.txtPassword.Size = new System.Drawing.Size(447, 53);
             this.txtPassword.TabIndex = 6;
             this.txtPassword.Watermark = "Enter Password";
+            this.txtPassword.KeyPress += new Wisej.Web.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
             // txtUsername
             // 
             this.txtUsername.Anchor = Wisej.Web.AnchorStyles.Top;
             this.txtUsername.CssStyle = "border-radius: 4px";
             this.txtUsername.Font = new System.Drawing.Font("default", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtUsername.LabelText = "";
             this.txtUsername.Location = new System.Drawing.Point(72, 91);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Padding = new Wisej.Web.Padding(15);

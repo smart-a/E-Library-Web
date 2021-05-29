@@ -29,9 +29,9 @@ namespace E_Library.Dashboard
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.ComponentTool componentTool2 = new Wisej.Web.ComponentTool();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle3 = new Wisej.Web.DataGridViewCellStyle();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle4 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.ComponentTool componentTool1 = new Wisej.Web.ComponentTool();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle1 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle2 = new Wisej.Web.DataGridViewCellStyle();
             this.panel1 = new Wisej.Web.Panel();
             this.panelSubBook = new Wisej.Web.Panel();
             this.cbCategory = new Wisej.Web.ComboBox();
@@ -40,7 +40,7 @@ namespace E_Library.Dashboard
             this.dataGridView1 = new Wisej.Web.DataGridView();
             this.pictureBox4 = new Wisej.Web.PictureBox();
             this.label5 = new Wisej.Web.Label();
-            this.panel2 = new Wisej.Web.Panel();
+            this.panelSub = new Wisej.Web.Panel();
             this.tagTextSub = new Wisej.Web.TagTextBox();
             this.btnNewSub = new Wisej.Web.Button();
             this.label1 = new Wisej.Web.Label();
@@ -49,22 +49,25 @@ namespace E_Library.Dashboard
             this.panelSubBook.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.panelSub.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.panelSubBook);
-            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.panelSub);
             this.panel1.Dock = Wisej.Web.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 993);
             this.panel1.TabIndex = 0;
+            this.panel1.TabStop = true;
             // 
             // panelSubBook
             // 
+            this.panelSubBook.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panelSubBook.Controls.Add(this.cbCategory);
             this.panelSubBook.Controls.Add(this.btnRefresh);
             this.panelSubBook.Controls.Add(this.txtSearch);
@@ -73,8 +76,9 @@ namespace E_Library.Dashboard
             this.panelSubBook.Controls.Add(this.label5);
             this.panelSubBook.Location = new System.Drawing.Point(52, 137);
             this.panelSubBook.Name = "panelSubBook";
-            this.panelSubBook.Size = new System.Drawing.Size(697, 582);
+            this.panelSubBook.Size = new System.Drawing.Size(697, 653);
             this.panelSubBook.TabIndex = 8;
+            this.panelSubBook.TabStop = true;
             // 
             // cbCategory
             // 
@@ -82,7 +86,6 @@ namespace E_Library.Dashboard
             this.cbCategory.AutoSize = false;
             this.cbCategory.DropDownStyle = Wisej.Web.ComboBoxStyle.DropDownList;
             this.cbCategory.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.cbCategory.LabelText = "";
             this.cbCategory.Location = new System.Drawing.Point(481, 85);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(194, 28);
@@ -103,26 +106,25 @@ namespace E_Library.Dashboard
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtSearch.LabelText = "";
             this.txtSearch.Location = new System.Drawing.Point(20, 85);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Padding = new Wisej.Web.Padding(5);
-            this.txtSearch.Size = new System.Drawing.Size(235, 29);
+            this.txtSearch.Size = new System.Drawing.Size(235, 30);
             this.txtSearch.TabIndex = 7;
-            componentTool2.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/search.svg";
+            componentTool1.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/search.svg";
             this.txtSearch.Tools.AddRange(new Wisej.Web.ComponentTool[] {
-            componentTool2});
+            componentTool1});
             this.txtSearch.Watermark = "Search book";
             this.txtSearch.KeyPress += new Wisej.Web.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Location = new System.Drawing.Point(20, 120);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Size = new System.Drawing.Size(655, 459);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.RowHeaderMouseClick += new Wisej.Web.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
@@ -143,27 +145,28 @@ namespace E_Library.Dashboard
             this.label5.ForeColor = System.Drawing.Color.FromArgb(44, 84, 77);
             this.label5.Location = new System.Drawing.Point(66, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(227, 45);
+            this.label5.Size = new System.Drawing.Size(279, 45);
             this.label5.TabIndex = 0;
             this.label5.Text = "Subscribed Books";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // panel2
+            // panelSub
             // 
-            this.panel2.Controls.Add(this.tagTextSub);
-            this.panel2.Controls.Add(this.btnNewSub);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(52, 39);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(698, 73);
-            this.panel2.TabIndex = 0;
+            this.panelSub.Anchor = Wisej.Web.AnchorStyles.Top;
+            this.panelSub.Controls.Add(this.tagTextSub);
+            this.panelSub.Controls.Add(this.btnNewSub);
+            this.panelSub.Controls.Add(this.label1);
+            this.panelSub.Controls.Add(this.pictureBox1);
+            this.panelSub.Location = new System.Drawing.Point(52, 39);
+            this.panelSub.Name = "panelSub";
+            this.panelSub.Size = new System.Drawing.Size(698, 73);
+            this.panelSub.TabIndex = 0;
+            this.panelSub.TabStop = true;
             // 
             // tagTextSub
             // 
             this.tagTextSub.AutoSize = false;
             this.tagTextSub.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.tagTextSub.LabelText = "";
             this.tagTextSub.Location = new System.Drawing.Point(239, 22);
             this.tagTextSub.MaxTagWidth = 200;
             this.tagTextSub.Name = "tagTextSub";
@@ -180,9 +183,9 @@ namespace E_Library.Dashboard
             this.btnNewSub.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
             this.btnNewSub.Focusable = false;
             this.btnNewSub.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/pencil-square-o.svg";
-            this.btnNewSub.Location = new System.Drawing.Point(481, 22);
+            this.btnNewSub.Location = new System.Drawing.Point(468, 22);
             this.btnNewSub.Name = "btnNewSub";
-            this.btnNewSub.Size = new System.Drawing.Size(26, 27);
+            this.btnNewSub.Size = new System.Drawing.Size(39, 27);
             this.btnNewSub.TabIndex = 2;
             this.btnNewSub.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNewSub.Click += new System.EventHandler(this.btnNewSub_Click);
@@ -207,6 +210,7 @@ namespace E_Library.Dashboard
             // 
             // LibrayControl
             // 
+            this.AutoScroll = true;
             this.Controls.Add(this.panel1);
             this.Name = "LibrayControl";
             this.Size = new System.Drawing.Size(800, 993);
@@ -217,7 +221,7 @@ namespace E_Library.Dashboard
             this.panelSubBook.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.panelSub.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -226,7 +230,7 @@ namespace E_Library.Dashboard
         #endregion
 
         private Wisej.Web.Panel panel1;
-        private Wisej.Web.Panel panel2;
+        private Wisej.Web.Panel panelSub;
         private Wisej.Web.PictureBox pictureBox1;
         private Wisej.Web.Label label1;
         private Wisej.Web.Button btnNewSub;

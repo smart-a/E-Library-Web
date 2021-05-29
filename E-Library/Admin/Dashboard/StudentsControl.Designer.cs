@@ -48,8 +48,7 @@ namespace E_Library.Admin.Dashboard
             // 
             // panel5
             // 
-            this.panel5.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
-            | Wisej.Web.AnchorStyles.Right)));
+            this.panel5.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel5.Controls.Add(this.btnRefresh);
             this.panel5.Controls.Add(this.pictureBox4);
             this.panel5.Controls.Add(this.label5);
@@ -61,6 +60,7 @@ namespace E_Library.Admin.Dashboard
             this.panel5.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel5.ResponsiveProfiles"))));
             this.panel5.Size = new System.Drawing.Size(701, 639);
             this.panel5.TabIndex = 11;
+            this.panel5.TabStop = true;
             // 
             // btnRefresh
             // 
@@ -95,11 +95,10 @@ namespace E_Library.Admin.Dashboard
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtSearch.LabelText = null;
             this.txtSearch.Location = new System.Drawing.Point(22, 108);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Padding = new Wisej.Web.Padding(5);
-            this.txtSearch.Size = new System.Drawing.Size(235, 29);
+            this.txtSearch.Size = new System.Drawing.Size(235, 30);
             this.txtSearch.TabIndex = 3;
             componentTool1.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/search.svg";
             this.txtSearch.Tools.AddRange(new Wisej.Web.ComponentTool[] {
@@ -143,6 +142,7 @@ namespace E_Library.Admin.Dashboard
             // 
             // StudentsControl
             // 
+            this.AutoScroll = true;
             this.Controls.Add(this.panel5);
             this.Name = "StudentsControl";
             this.Size = new System.Drawing.Size(800, 742);

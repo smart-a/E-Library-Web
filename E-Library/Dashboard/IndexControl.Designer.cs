@@ -64,17 +64,20 @@ namespace E_Library.Dashboard
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Dock = Wisej.Web.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 815);
+            this.panel1.Size = new System.Drawing.Size(800, 905);
             this.panel1.TabIndex = 7;
+            this.panel1.TabStop = true;
             // 
             // panel2
             // 
+            this.panel2.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel2.Controls.Add(this.cbCategory);
             this.panel2.Controls.Add(this.btnRefresh);
             this.panel2.Controls.Add(this.txtSearch);
@@ -83,8 +86,9 @@ namespace E_Library.Dashboard
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(52, 189);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(697, 582);
+            this.panel2.Size = new System.Drawing.Size(697, 632);
             this.panel2.TabIndex = 7;
+            this.panel2.TabStop = true;
             // 
             // cbCategory
             // 
@@ -92,7 +96,6 @@ namespace E_Library.Dashboard
             this.cbCategory.AutoSize = false;
             this.cbCategory.DropDownStyle = Wisej.Web.ComboBoxStyle.DropDownList;
             this.cbCategory.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.cbCategory.LabelText = null;
             this.cbCategory.Location = new System.Drawing.Point(481, 85);
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(194, 28);
@@ -113,11 +116,10 @@ namespace E_Library.Dashboard
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtSearch.LabelText = null;
             this.txtSearch.Location = new System.Drawing.Point(20, 85);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Padding = new Wisej.Web.Padding(5);
-            this.txtSearch.Size = new System.Drawing.Size(235, 29);
+            this.txtSearch.Size = new System.Drawing.Size(235, 30);
             this.txtSearch.TabIndex = 7;
             componentTool1.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/search.svg";
             this.txtSearch.Tools.AddRange(new Wisej.Web.ComponentTool[] {
@@ -159,6 +161,7 @@ namespace E_Library.Dashboard
             // 
             // panel5
             // 
+            this.panel5.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel5.BackColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.pictureBox2);
@@ -172,6 +175,7 @@ namespace E_Library.Dashboard
             this.panel5.Padding = new Wisej.Web.Padding(5);
             this.panel5.Size = new System.Drawing.Size(325, 107);
             this.panel5.TabIndex = 6;
+            this.panel5.TabStop = true;
             // 
             // pictureBox1
             // 
@@ -195,7 +199,7 @@ namespace E_Library.Dashboard
             // label3
             // 
             this.label3.AllowHtml = true;
-            this.label3.Font = new System.Drawing.Font("default", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.label3.Font = new System.Drawing.Font("default", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.label3.Location = new System.Drawing.Point(25, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(210, 53);
@@ -211,13 +215,14 @@ namespace E_Library.Dashboard
             this.lblBookmark.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblBookmark.Location = new System.Drawing.Point(64, 64);
             this.lblBookmark.Name = "lblBookmark";
-            this.lblBookmark.Size = new System.Drawing.Size(27, 23);
+            this.lblBookmark.Size = new System.Drawing.Size(26, 23);
             this.lblBookmark.TabIndex = 0;
             this.lblBookmark.Text = "50";
             this.lblBookmark.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel4
             // 
+            this.panel4.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel4.BackColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.panel4.Controls.Add(this.pictureBox3);
             this.panel4.Controls.Add(this.label2);
@@ -231,6 +236,7 @@ namespace E_Library.Dashboard
             this.panel4.Padding = new Wisej.Web.Padding(5);
             this.panel4.Size = new System.Drawing.Size(326, 107);
             this.panel4.TabIndex = 4;
+            this.panel4.TabStop = true;
             // 
             // pictureBox3
             // 
@@ -243,10 +249,10 @@ namespace E_Library.Dashboard
             // label2
             // 
             this.label2.AllowHtml = true;
-            this.label2.Font = new System.Drawing.Font("default", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.label2.Font = new System.Drawing.Font("default", 25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.label2.Location = new System.Drawing.Point(22, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 50);
+            this.label2.Size = new System.Drawing.Size(221, 50);
             this.label2.TabIndex = 1;
             this.label2.Text = "Wallet Balance";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -269,7 +275,7 @@ namespace E_Library.Dashboard
             this.lblWallet.ForeColor = System.Drawing.Color.Green;
             this.lblWallet.Location = new System.Drawing.Point(60, 64);
             this.lblWallet.Name = "lblWallet";
-            this.lblWallet.Size = new System.Drawing.Size(82, 23);
+            this.lblWallet.Size = new System.Drawing.Size(80, 23);
             this.lblWallet.TabIndex = 0;
             this.lblWallet.Text = "N12,500";
             this.lblWallet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -278,7 +284,7 @@ namespace E_Library.Dashboard
             // 
             this.Controls.Add(this.panel1);
             this.Name = "IndexControl";
-            this.Size = new System.Drawing.Size(800, 815);
+            this.Size = new System.Drawing.Size(800, 905);
             this.Load += new System.EventHandler(this.IndexControl_Load);
             this.Appear += new System.EventHandler(this.IndexControl_Appear);
             this.panel1.ResumeLayout(false);

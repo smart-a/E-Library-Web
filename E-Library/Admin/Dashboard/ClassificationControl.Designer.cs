@@ -29,9 +29,9 @@ namespace E_Library.Admin.Dashboard
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClassificationControl));
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle10 = new Wisej.Web.DataGridViewCellStyle();
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle11 = new Wisej.Web.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClassificationControl));
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle12 = new Wisej.Web.DataGridViewCellStyle();
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle13 = new Wisej.Web.DataGridViewCellStyle();
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle14 = new Wisej.Web.DataGridViewCellStyle();
@@ -40,12 +40,18 @@ namespace E_Library.Admin.Dashboard
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle17 = new Wisej.Web.DataGridViewCellStyle();
             Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle18 = new Wisej.Web.DataGridViewCellStyle();
             this.panel1 = new Wisej.Web.Panel();
+            this.panelCourse = new Wisej.Web.Panel();
+            this.btnDeleteCourse = new Wisej.Web.Button();
+            this.btnRefreshCourse = new Wisej.Web.Button();
             this.txtCourse = new Wisej.Web.TextBox();
             this.btnAddCourse = new Wisej.Web.Button();
             this.pictureBox1 = new Wisej.Web.PictureBox();
             this.label1 = new Wisej.Web.Label();
             this.dataGridView2 = new Wisej.Web.DataGridView();
             this.panel2 = new Wisej.Web.Panel();
+            this.panelSub = new Wisej.Web.Panel();
+            this.btnDeleteSub = new Wisej.Web.Button();
+            this.btnRefreshSub = new Wisej.Web.Button();
             this.txtSubCost = new Wisej.Web.TextBox();
             this.txtSub = new Wisej.Web.TextBox();
             this.btnAddSub = new Wisej.Web.Button();
@@ -59,32 +65,25 @@ namespace E_Library.Admin.Dashboard
             this.txtCategory = new Wisej.Web.TextBox();
             this.btnRefreshCategory = new Wisej.Web.Button();
             this.panel5 = new Wisej.Web.Panel();
-            this.btnDeleteCategory = new Wisej.Web.Button();
             this.panelCategory = new Wisej.Web.Panel();
-            this.panelCourse = new Wisej.Web.Panel();
-            this.btnDeleteCourse = new Wisej.Web.Button();
-            this.btnRefreshCourse = new Wisej.Web.Button();
-            this.panelSub = new Wisej.Web.Panel();
-            this.btnDeleteSub = new Wisej.Web.Button();
-            this.btnRefreshSub = new Wisej.Web.Button();
+            this.btnDeleteCategory = new Wisej.Web.Button();
             this.panel1.SuspendLayout();
+            this.panelCourse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panelSub.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel5.SuspendLayout();
             this.panelCategory.SuspendLayout();
-            this.panelCourse.SuspendLayout();
-            this.panelSub.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
-            | Wisej.Web.AnchorStyles.Right)));
+            this.panel1.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel1.Controls.Add(this.panelCourse);
             this.panel1.Controls.Add(this.txtCourse);
             this.panel1.Controls.Add(this.btnAddCourse);
@@ -96,6 +95,43 @@ namespace E_Library.Admin.Dashboard
             this.panel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel1.ResponsiveProfiles"))));
             this.panel1.Size = new System.Drawing.Size(701, 308);
             this.panel1.TabIndex = 13;
+            this.panel1.TabStop = true;
+            // 
+            // panelCourse
+            // 
+            this.panelCourse.Controls.Add(this.btnDeleteCourse);
+            this.panelCourse.Controls.Add(this.btnRefreshCourse);
+            this.panelCourse.Location = new System.Drawing.Point(435, 181);
+            this.panelCourse.Name = "panelCourse";
+            this.panelCourse.Size = new System.Drawing.Size(136, 35);
+            this.panelCourse.TabIndex = 19;
+            this.panelCourse.TabStop = true;
+            this.panelCourse.Visible = false;
+            // 
+            // btnDeleteCourse
+            // 
+            this.btnDeleteCourse.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
+            this.btnDeleteCourse.BackColor = System.Drawing.Color.Green;
+            this.btnDeleteCourse.Font = new System.Drawing.Font("default", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnDeleteCourse.ImageSource = "resource.wx/Wisej.Ext.MaterialDesign/rubbish-bin-delete-button.svg";
+            this.btnDeleteCourse.Location = new System.Drawing.Point(91, 1);
+            this.btnDeleteCourse.Name = "btnDeleteCourse";
+            this.btnDeleteCourse.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnDeleteCourse.ResponsiveProfiles"))));
+            this.btnDeleteCourse.Size = new System.Drawing.Size(35, 35);
+            this.btnDeleteCourse.TabIndex = 17;
+            this.btnDeleteCourse.Click += new System.EventHandler(this.btnDeleteCourse_Click);
+            // 
+            // btnRefreshCourse
+            // 
+            this.btnRefreshCourse.BackColor = System.Drawing.Color.Green;
+            this.btnRefreshCourse.Font = new System.Drawing.Font("default", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnRefreshCourse.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/refresh.svg";
+            this.btnRefreshCourse.Location = new System.Drawing.Point(3, 1);
+            this.btnRefreshCourse.Name = "btnRefreshCourse";
+            this.btnRefreshCourse.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRefreshCourse.ResponsiveProfiles"))));
+            this.btnRefreshCourse.Size = new System.Drawing.Size(35, 35);
+            this.btnRefreshCourse.TabIndex = 15;
+            this.btnRefreshCourse.Click += new System.EventHandler(this.btnRefreshCourse_Click);
             // 
             // txtCourse
             // 
@@ -163,8 +199,7 @@ namespace E_Library.Admin.Dashboard
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
-            | Wisej.Web.AnchorStyles.Right)));
+            this.panel2.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel2.Controls.Add(this.panelSub);
             this.panel2.Controls.Add(this.txtSubCost);
             this.panel2.Controls.Add(this.txtSub);
@@ -175,8 +210,45 @@ namespace E_Library.Admin.Dashboard
             this.panel2.Location = new System.Drawing.Point(51, 724);
             this.panel2.Name = "panel2";
             this.panel2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel2.ResponsiveProfiles"))));
-            this.panel2.Size = new System.Drawing.Size(701, 308);
+            this.panel2.Size = new System.Drawing.Size(701, 351);
             this.panel2.TabIndex = 14;
+            this.panel2.TabStop = true;
+            // 
+            // panelSub
+            // 
+            this.panelSub.Controls.Add(this.btnDeleteSub);
+            this.panelSub.Controls.Add(this.btnRefreshSub);
+            this.panelSub.Location = new System.Drawing.Point(436, 252);
+            this.panelSub.Name = "panelSub";
+            this.panelSub.Size = new System.Drawing.Size(136, 35);
+            this.panelSub.TabIndex = 20;
+            this.panelSub.TabStop = true;
+            this.panelSub.Visible = false;
+            // 
+            // btnDeleteSub
+            // 
+            this.btnDeleteSub.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
+            this.btnDeleteSub.BackColor = System.Drawing.Color.Green;
+            this.btnDeleteSub.Font = new System.Drawing.Font("default", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnDeleteSub.ImageSource = "resource.wx/Wisej.Ext.MaterialDesign/rubbish-bin-delete-button.svg";
+            this.btnDeleteSub.Location = new System.Drawing.Point(91, 1);
+            this.btnDeleteSub.Name = "btnDeleteSub";
+            this.btnDeleteSub.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnDeleteSub.ResponsiveProfiles"))));
+            this.btnDeleteSub.Size = new System.Drawing.Size(35, 35);
+            this.btnDeleteSub.TabIndex = 17;
+            this.btnDeleteSub.Click += new System.EventHandler(this.btnDeleteSub_Click);
+            // 
+            // btnRefreshSub
+            // 
+            this.btnRefreshSub.BackColor = System.Drawing.Color.Green;
+            this.btnRefreshSub.Font = new System.Drawing.Font("default", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnRefreshSub.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/refresh.svg";
+            this.btnRefreshSub.Location = new System.Drawing.Point(3, 1);
+            this.btnRefreshSub.Name = "btnRefreshSub";
+            this.btnRefreshSub.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRefreshSub.ResponsiveProfiles"))));
+            this.btnRefreshSub.Size = new System.Drawing.Size(35, 35);
+            this.btnRefreshSub.TabIndex = 15;
+            this.btnRefreshSub.Click += new System.EventHandler(this.btnRefreshSub_Click);
             // 
             // txtSubCost
             // 
@@ -333,8 +405,7 @@ namespace E_Library.Admin.Dashboard
             // 
             // panel5
             // 
-            this.panel5.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
-            | Wisej.Web.AnchorStyles.Right)));
+            this.panel5.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel5.Controls.Add(this.panelCategory);
             this.panel5.Controls.Add(this.txtCategory);
             this.panel5.Controls.Add(this.pictureBox4);
@@ -346,6 +417,18 @@ namespace E_Library.Admin.Dashboard
             this.panel5.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel5.ResponsiveProfiles"))));
             this.panel5.Size = new System.Drawing.Size(701, 326);
             this.panel5.TabIndex = 12;
+            this.panel5.TabStop = true;
+            // 
+            // panelCategory
+            // 
+            this.panelCategory.Controls.Add(this.btnDeleteCategory);
+            this.panelCategory.Controls.Add(this.btnRefreshCategory);
+            this.panelCategory.Location = new System.Drawing.Point(437, 202);
+            this.panelCategory.Name = "panelCategory";
+            this.panelCategory.Size = new System.Drawing.Size(136, 35);
+            this.panelCategory.TabIndex = 18;
+            this.panelCategory.TabStop = true;
+            this.panelCategory.Visible = false;
             // 
             // btnDeleteCategory
             // 
@@ -360,88 +443,9 @@ namespace E_Library.Admin.Dashboard
             this.btnDeleteCategory.TabIndex = 17;
             this.btnDeleteCategory.Click += new System.EventHandler(this.btnDeleteCategory_Click);
             // 
-            // panelCategory
-            // 
-            this.panelCategory.Controls.Add(this.btnDeleteCategory);
-            this.panelCategory.Controls.Add(this.btnRefreshCategory);
-            this.panelCategory.Location = new System.Drawing.Point(437, 202);
-            this.panelCategory.Name = "panelCategory";
-            this.panelCategory.Size = new System.Drawing.Size(136, 35);
-            this.panelCategory.TabIndex = 18;
-            this.panelCategory.Visible = false;
-            // 
-            // panelCourse
-            // 
-            this.panelCourse.Controls.Add(this.btnDeleteCourse);
-            this.panelCourse.Controls.Add(this.btnRefreshCourse);
-            this.panelCourse.Location = new System.Drawing.Point(435, 181);
-            this.panelCourse.Name = "panelCourse";
-            this.panelCourse.Size = new System.Drawing.Size(136, 35);
-            this.panelCourse.TabIndex = 19;
-            this.panelCourse.Visible = false;
-            // 
-            // btnDeleteCourse
-            // 
-            this.btnDeleteCourse.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
-            this.btnDeleteCourse.BackColor = System.Drawing.Color.Green;
-            this.btnDeleteCourse.Font = new System.Drawing.Font("default", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.btnDeleteCourse.ImageSource = "resource.wx/Wisej.Ext.MaterialDesign/rubbish-bin-delete-button.svg";
-            this.btnDeleteCourse.Location = new System.Drawing.Point(91, 1);
-            this.btnDeleteCourse.Name = "btnDeleteCourse";
-            this.btnDeleteCourse.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnDeleteCourse.ResponsiveProfiles"))));
-            this.btnDeleteCourse.Size = new System.Drawing.Size(35, 35);
-            this.btnDeleteCourse.TabIndex = 17;
-            this.btnDeleteCourse.Click += new System.EventHandler(this.btnDeleteCourse_Click);
-            // 
-            // btnRefreshCourse
-            // 
-            this.btnRefreshCourse.BackColor = System.Drawing.Color.Green;
-            this.btnRefreshCourse.Font = new System.Drawing.Font("default", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.btnRefreshCourse.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/refresh.svg";
-            this.btnRefreshCourse.Location = new System.Drawing.Point(3, 1);
-            this.btnRefreshCourse.Name = "btnRefreshCourse";
-            this.btnRefreshCourse.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRefreshCourse.ResponsiveProfiles"))));
-            this.btnRefreshCourse.Size = new System.Drawing.Size(35, 35);
-            this.btnRefreshCourse.TabIndex = 15;
-            this.btnRefreshCourse.Click += new System.EventHandler(this.btnRefreshCourse_Click);
-            // 
-            // panelSub
-            // 
-            this.panelSub.Controls.Add(this.btnDeleteSub);
-            this.panelSub.Controls.Add(this.btnRefreshSub);
-            this.panelSub.Location = new System.Drawing.Point(436, 252);
-            this.panelSub.Name = "panelSub";
-            this.panelSub.Size = new System.Drawing.Size(136, 35);
-            this.panelSub.TabIndex = 20;
-            this.panelSub.Visible = false;
-            // 
-            // btnDeleteSub
-            // 
-            this.btnDeleteSub.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
-            this.btnDeleteSub.BackColor = System.Drawing.Color.Green;
-            this.btnDeleteSub.Font = new System.Drawing.Font("default", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.btnDeleteSub.ImageSource = "resource.wx/Wisej.Ext.MaterialDesign/rubbish-bin-delete-button.svg";
-            this.btnDeleteSub.Location = new System.Drawing.Point(91, 1);
-            this.btnDeleteSub.Name = "btnDeleteSub";
-            this.btnDeleteSub.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnDeleteSub.ResponsiveProfiles"))));
-            this.btnDeleteSub.Size = new System.Drawing.Size(35, 35);
-            this.btnDeleteSub.TabIndex = 17;
-            this.btnDeleteSub.Click += new System.EventHandler(this.btnDeleteSub_Click);
-            // 
-            // btnRefreshSub
-            // 
-            this.btnRefreshSub.BackColor = System.Drawing.Color.Green;
-            this.btnRefreshSub.Font = new System.Drawing.Font("default", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.btnRefreshSub.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/refresh.svg";
-            this.btnRefreshSub.Location = new System.Drawing.Point(3, 1);
-            this.btnRefreshSub.Name = "btnRefreshSub";
-            this.btnRefreshSub.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRefreshSub.ResponsiveProfiles"))));
-            this.btnRefreshSub.Size = new System.Drawing.Size(35, 35);
-            this.btnRefreshSub.TabIndex = 15;
-            this.btnRefreshSub.Click += new System.EventHandler(this.btnRefreshSub_Click);
-            // 
             // ClassificationControl
             // 
+            this.AutoScroll = true;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
@@ -450,10 +454,12 @@ namespace E_Library.Admin.Dashboard
             this.Appear += new System.EventHandler(this.ClassificationControl_Appear);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panelCourse.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panelSub.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -461,8 +467,6 @@ namespace E_Library.Admin.Dashboard
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panelCategory.ResumeLayout(false);
-            this.panelCourse.ResumeLayout(false);
-            this.panelSub.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -32,4 +32,13 @@ namespace E_Library.Models
            Member
         }
     }
+
+    public class UserDisplay
+    {
+        public Guid Id { set; get; }
+        public string StudentNumber { set; get; }
+        public string Fullname { set; get; }
+        public string Gender { set; get; }
+        public int Level { set; get; }
+    }
 }

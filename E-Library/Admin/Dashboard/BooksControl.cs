@@ -3,6 +3,7 @@ using E_Library.Data;
 using E_Library.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Wisej.Web;
 
@@ -11,11 +12,13 @@ namespace E_Library.Admin.Dashboard
     public partial class BooksControl : Wisej.Web.UserControl
     {
         ApplicationDbContext _context;
+        Object MyParent;
 
-        public BooksControl()
+        public BooksControl(object Owner)
         {
             InitializeComponent();
             _context = new ApplicationDbContext();
+            MyParent = Owner;
         }
 
         public void LoadBooks(List<Book> param = null)
@@ -23,21 +26,20 @@ namespace E_Library.Admin.Dashboard
             var bookList = param;
             if (bookList == null || bookList.Count < 1)
             {
+                _context = new ApplicationDbContext();
                 bookList = _context.Books.ToList();
             }
 
-           var books = bookList.Select((b) =>
-                new
-                {
-                    b.Id,
-                    Category = b.Category.CategoryName,
-                    b.BookName,
-                    Course = b.Course.CourseName,
-                    Subscription = b.Subscription.SubscriptionName,
-                    Amount = b.Subscription.Amount.ToString("###,##0.00")
-                }).ToList<object>();
-
-            //usersList = new BindingList<object>(users);
+            var books = bookList.Select((b) =>
+                 new BookDisplay
+                 {
+                     Id = b.Id,
+                     Category = b.Category.CategoryName,
+                     BookName = b.BookName,
+                     Course = b.Course.CourseName,
+                     Subscription = b.Subscription.SubscriptionName,
+                     Amount = b.Subscription.Amount.ToString("###,##0.00")
+                 }).ToList();
 
             dataGridView1.DataSource = books;
             dataGridView1.Columns["Id"].Visible = false;
@@ -45,6 +47,11 @@ namespace E_Library.Admin.Dashboard
             dataGridView1.Columns["BookName"].HeaderText = "Book Name";
             dataGridView1.Columns["BookName"].Width = 150;
 
+            var buttonCol = new DataGridViewButtonColumn();
+            buttonCol.Name = "ViewBook";
+            buttonCol.HeaderText = "Header";
+            buttonCol.Text = "View";
+            dataGridView1.Columns.Add(buttonCol);
         }
 
         private void btnAddNew_Click(object sender, EventArgs e)
@@ -55,7 +62,8 @@ namespace E_Library.Admin.Dashboard
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var currentBook = (Book)dataGridView1.CurrentRow.DataBoundItem;
+            var index = Guid.Parse(dataGridView1.CurrentRow[0].Value.ToString());
+            var currentBook = _context.Books.SingleOrDefault((b) => b.Id == index);
             if (currentBook != null)
             {
                 DialogResult dialogResult;
@@ -75,6 +83,7 @@ namespace E_Library.Admin.Dashboard
                     {
                         _context.Books.Remove(currentBook);
                         _context.SaveChanges();
+                        DeleteSavedBook(currentBook.BookPath);
                         MessageBox.Show("Book's record deleted");
                         LoadBooks();
                     }
@@ -96,11 +105,44 @@ namespace E_Library.Admin.Dashboard
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (txtSearch.Text == "")
+            {
+                LoadBooks();
+                return;
+            }
             var bookList = _context.Books.Where((b) =>
                 b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase) ||
                 b.Category.CategoryName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
 
             LoadBooks(bookList);
+        }
+
+        private void DeleteSavedBook(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridView1.Columns["ViewBook"].Index)
+            {
+                var Id = Guid.Parse(dataGridView1.CurrentRow[0].Value.ToString());
+                var currentBook = _context.Books.SingleOrDefault((b) => b.Id == Id);
+
+                var parent = (AdminDashboard)MyParent;
+                BookView bookView = new BookView(currentBook.BookPath);
+                parent.NavigateMenu(bookView);
+            }
         }
     }
 }

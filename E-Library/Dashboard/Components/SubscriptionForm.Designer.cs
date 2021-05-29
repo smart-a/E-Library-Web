@@ -60,6 +60,7 @@ namespace E_Library.Dashboard.Components
             this.panel1.ShowHeader = true;
             this.panel1.Size = new System.Drawing.Size(315, 76);
             this.panel1.TabIndex = 17;
+            this.panel1.TabStop = true;
             this.panel1.Text = "Subscription";
             // 
             // cbSubscription
@@ -74,7 +75,6 @@ namespace E_Library.Dashboard.Components
             "300",
             "400",
             "500"});
-            this.cbSubscription.LabelText = null;
             this.cbSubscription.Location = new System.Drawing.Point(13, 3);
             this.cbSubscription.Name = "cbSubscription";
             this.cbSubscription.Size = new System.Drawing.Size(298, 42);
@@ -109,6 +109,7 @@ namespace E_Library.Dashboard.Components
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SubscriptionForm";
+            this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.Text = "Subscription";
             this.FormClosed += new Wisej.Web.FormClosedEventHandler(this.SubscriptionForm_FormClosed);
             this.Appear += new System.EventHandler(this.Subscription_Appear);

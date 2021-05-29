@@ -58,6 +58,7 @@ namespace E_Library.Admin
             this.panel7.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel7.ResponsiveProfiles"))));
             this.panel7.Size = new System.Drawing.Size(597, 471);
             this.panel7.TabIndex = 2;
+            this.panel7.TabStop = true;
             // 
             // label1
             // 
@@ -93,6 +94,7 @@ namespace E_Library.Admin
             this.panelMsg.ShowCloseButton = false;
             this.panelMsg.Size = new System.Drawing.Size(450, 60);
             this.panelMsg.TabIndex = 8;
+            this.panelMsg.TabStop = true;
             this.panelMsg.Visible = false;
             // 
             // lblMsg
@@ -106,7 +108,7 @@ namespace E_Library.Admin
             this.lblMsg.Location = new System.Drawing.Point(18, 19);
             this.lblMsg.Name = "lblMsg";
             this.lblMsg.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("lblMsg.ResponsiveProfiles"))));
-            this.lblMsg.Size = new System.Drawing.Size(95, 21);
+            this.lblMsg.Size = new System.Drawing.Size(96, 21);
             this.lblMsg.TabIndex = 1;
             this.lblMsg.Text = "Some Error";
             // 
@@ -117,7 +119,7 @@ namespace E_Library.Admin
             this.btnCloseMsg.BackColor = System.Drawing.Color.Transparent;
             this.btnCloseMsg.BorderStyle = Wisej.Web.BorderStyle.None;
             this.btnCloseMsg.Focusable = false;
-            this.btnCloseMsg.Font = new System.Drawing.Font("default", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.btnCloseMsg.Font = new System.Drawing.Font("@default", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.btnCloseMsg.ForeColor = System.Drawing.Color.FromArgb(153, 45, 36);
             this.btnCloseMsg.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/times.svg";
             this.btnCloseMsg.Location = new System.Drawing.Point(410, 10);
@@ -150,7 +152,6 @@ namespace E_Library.Admin
             this.txtPassword.CssStyle = "border-radius: 4px";
             this.txtPassword.Font = new System.Drawing.Font("default", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPassword.InputType.Type = Wisej.Web.TextBoxType.Password;
-            this.txtPassword.LabelText = "";
             this.txtPassword.Location = new System.Drawing.Point(70, 294);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Padding = new Wisej.Web.Padding(15);
@@ -166,7 +167,6 @@ namespace E_Library.Admin
             this.txtUsername.Anchor = Wisej.Web.AnchorStyles.Top;
             this.txtUsername.CssStyle = "border-radius: 4px";
             this.txtUsername.Font = new System.Drawing.Font("default", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtUsername.LabelText = "";
             this.txtUsername.Location = new System.Drawing.Point(70, 220);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Padding = new Wisej.Web.Padding(15);

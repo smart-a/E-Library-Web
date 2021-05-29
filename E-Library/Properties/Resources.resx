@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="5aa3ae5d9fc609199d0ff24a" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5aa3ae5d9fc609199d0ff24a.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ebooks" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ebooks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="nda-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\nda-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="16-164923_e-books-png-image-background-public-library" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\16-164923_e-books-png-image-background-public-library.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="nda-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nda-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="e-library-logo-png" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\e-library-logo-png.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="5aa3ae5d9fc609199d0ff24a" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5aa3ae5d9fc609199d0ff24a.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

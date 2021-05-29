@@ -54,6 +54,7 @@
     <Content Include="Dashboard\Default.json" />
     <Content Include="Admin\Default.json" />
     <Content Include="Admin\Dashboard\Default.json" />
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -90,6 +91,12 @@
     </Compile>
     <Compile Include="Admin\Dashboard\BooksControl.Designer.cs">
       <DependentUpon>BooksControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Dashboard\BookView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\Dashboard\BookView.Designer.cs">
+      <DependentUpon>BookView.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\Dashboard\ClassificationControl.cs">
       <SubType>UserControl</SubType>
@@ -132,6 +139,24 @@
     </Compile>
     <Compile Include="Dashboard\BookmarksControl.Designer.cs">
       <DependentUpon>BookmarksControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\BookView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Dashboard\BookView.Designer.cs">
+      <DependentUpon>BookView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Components\BookDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Components\BookDetails.Designer.cs">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Components\FundWallet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard\Components\FundWallet.Designer.cs">
+      <DependentUpon>FundWallet.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\Components\SubscriptionForm.cs">
       <SubType>Form</SubType>
@@ -207,22 +232,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Admin\Dashboard\Books\" />
+    <Folder Include="Books\" />
     <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\WiseJ Library\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\WiseJ Library\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.IdentityModel.JsonWebTokens">
-      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.11.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.11.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.11.1\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.IdentityModel.Tokens">
-      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.11.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.11.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.6.11.1\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.11.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.11.1\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -231,16 +259,17 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IdentityModel.Tokens.Jwt">
-      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.11.0\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.11.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.6.11.1\lib\net472\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Wisej.Ext.FontAwesome">
-      <HintPath>..\..\..\..\..\wisej-extensions\Wisej.Ext.FontAwesome\bin\Wisej.Ext.FontAwesome.dll</HintPath>
+      <HintPath>..\..\WiseJ Library\Wisej.Ext.FontAwesome.dll</HintPath>
     </Reference>
     <Reference Include="Wisej.Ext.MaterialDesign">
-      <HintPath>..\..\..\..\..\wisej-extensions\Wisej.Ext.MaterialDesign\bin\Wisej.Ext.MaterialDesign.dll</HintPath>
+      <HintPath>..\..\WiseJ Library\Wisej.Ext.MaterialDesign.dll</HintPath>
     </Reference>
     <Reference Include="Wisej.Framework" />
     <Reference Include="Wisej.Web.Ext.NavigationBar, Version=2.0.0.0, Culture=neutral, PublicKeyToken=653fbd0440795259, processorArchitecture=MSIL" />
@@ -254,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Dashboard\BooksControl.resx">
       <DependentUpon>BooksControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Dashboard\BookView.resx">
+      <DependentUpon>BookView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\Dashboard\ClassificationControl.resx">
       <DependentUpon>ClassificationControl.cs</DependentUpon>
@@ -275,6 +307,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\BookmarksControl.resx">
       <DependentUpon>BookmarksControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\BookView.resx">
+      <DependentUpon>BookView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Components\BookDetails.resx">
+      <DependentUpon>BookDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard\Components\FundWallet.resx">
+      <DependentUpon>FundWallet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Components\SubscriptionForm.resx">
       <DependentUpon>SubscriptionForm.cs</DependentUpon>

@@ -33,7 +33,7 @@ namespace E_Library.Dashboard
             this.panel2 = new Wisej.Web.Panel();
             this.panel3 = new Wisej.Web.Panel();
             this.btnUser = new Wisej.Web.Button();
-            this.menuItem1 = new Wisej.Web.MenuItem();
+            this.menuUser = new Wisej.Web.MenuItem();
             this.menuProfile = new Wisej.Web.MenuItem();
             this.menuLogout = new Wisej.Web.MenuItem();
             this.btnNavShow = new Wisej.Web.Button();
@@ -51,10 +51,11 @@ namespace E_Library.Dashboard
             this.panel2.BackColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = Wisej.Web.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(210, 0);
+            this.panel2.Location = new System.Drawing.Point(70, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(591, 86);
+            this.panel2.Size = new System.Drawing.Size(731, 86);
             this.panel2.TabIndex = 4;
+            this.panel2.TabStop = true;
             // 
             // panel3
             // 
@@ -64,8 +65,9 @@ namespace E_Library.Dashboard
             this.panel3.Dock = Wisej.Web.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(591, 79);
+            this.panel3.Size = new System.Drawing.Size(731, 79);
             this.panel3.TabIndex = 0;
+            this.panel3.TabStop = true;
             // 
             // btnUser
             // 
@@ -76,9 +78,9 @@ namespace E_Library.Dashboard
             this.btnUser.ForeColor = System.Drawing.Color.FromArgb(44, 84, 77);
             this.btnUser.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUser.ImageSource = "resource.wx/Wisej.Ext.MaterialDesign/round-account-button-with-user-inside.svg";
-            this.btnUser.Location = new System.Drawing.Point(518, 21);
+            this.btnUser.Location = new System.Drawing.Point(658, 21);
             this.btnUser.MenuItems.AddRange(new Wisej.Web.MenuItem[] {
-            this.menuItem1,
+            this.menuUser,
             this.menuProfile,
             this.menuLogout});
             this.btnUser.Name = "btnUser";
@@ -87,14 +89,14 @@ namespace E_Library.Dashboard
             this.btnUser.Size = new System.Drawing.Size(45, 39);
             this.btnUser.TabIndex = 9;
             this.btnUser.TextImageRelation = Wisej.Web.TextImageRelation.TextBeforeImage;
+            this.btnUser.ItemClicked += new Wisej.Web.MenuButtonItemClickedEventHandler(this.btnUser_ItemClicked);
             // 
-            // menuItem1
+            // menuUser
             // 
-            this.menuItem1.Enabled = false;
-            this.menuItem1.IconSource = "resource.wx/Wisej.Ext.FontAwesome/user-secret.svg";
-            this.menuItem1.Index = 0;
-            this.menuItem1.Name = "menuItem1";
-            this.menuItem1.Text = "Administrator";
+            this.menuUser.Enabled = false;
+            this.menuUser.Index = 0;
+            this.menuUser.Name = "menuUser";
+            this.menuUser.Text = "";
             // 
             // menuProfile
             // 
@@ -106,12 +108,10 @@ namespace E_Library.Dashboard
             // menuLogout
             // 
             this.menuLogout.AllowHtml = true;
-            this.menuLogout.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.menuLogout.ForeColor = System.Drawing.Color.FromName("@buttonFace");
             this.menuLogout.IconSource = "resource.wx/Wisej.Ext.FontAwesome/reply.svg";
             this.menuLogout.Index = 2;
             this.menuLogout.Name = "menuLogout";
-            this.menuLogout.Text = "<div style=\"padding: 8px\">Logout</div>";
+            this.menuLogout.Text = "Logout";
             // 
             // btnNavShow
             // 
@@ -127,11 +127,11 @@ namespace E_Library.Dashboard
             this.btnNavShow.Size = new System.Drawing.Size(49, 37);
             this.btnNavShow.TabIndex = 8;
             this.btnNavShow.Tag = "show";
-            this.btnNavShow.Visible = false;
             this.btnNavShow.Click += new System.EventHandler(this.btnNavShow_Click);
             // 
             // navigationBar1
             // 
+            this.navigationBar1.CompactView = true;
             this.navigationBar1.Dock = Wisej.Web.DockStyle.Left;
             this.navigationBar1.Font = new System.Drawing.Font("default", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.navigationBar1.Items.AddRange(new Wisej.Web.Ext.NavigationBar.NavigationBarItem[] {
@@ -141,7 +141,7 @@ namespace E_Library.Dashboard
             this.navigationBar1.Logo = "resource.wx/Wisej.Ext.MaterialDesign/city-buildings-silhouette.svg";
             this.navigationBar1.Name = "navigationBar1";
             this.navigationBar1.ShowUser = false;
-            this.navigationBar1.Size = new System.Drawing.Size(210, 528);
+            this.navigationBar1.Size = new System.Drawing.Size(70, 528);
             this.navigationBar1.Text = "E-Library";
             // 
             // navDashboard
@@ -150,6 +150,7 @@ namespace E_Library.Dashboard
             this.navDashboard.Icon = "resource.wx/Wisej.Ext.FontAwesome/tachometer.svg";
             this.navDashboard.Name = "navDashboard";
             this.navDashboard.Text = "Dashboard";
+            this.navDashboard.Click += new System.EventHandler(this.navDashboard_Click);
             // 
             // navBookmark
             // 
@@ -160,6 +161,7 @@ namespace E_Library.Dashboard
             this.navBookmark.InfoTextForeColor = System.Drawing.Color.FromName("@buttonText");
             this.navBookmark.Name = "navBookmark";
             this.navBookmark.Text = "Bookmarks";
+            this.navBookmark.Click += new System.EventHandler(this.navBookmark_Click);
             // 
             // navLibrary
             // 
@@ -170,14 +172,17 @@ namespace E_Library.Dashboard
             this.navLibrary.InfoTextForeColor = System.Drawing.Color.FromName("@buttonText");
             this.navLibrary.Name = "navLibrary";
             this.navLibrary.Text = "My Library";
+            this.navLibrary.Click += new System.EventHandler(this.navLibrary_Click);
             // 
             // panelMain
             // 
+            this.panelMain.AutoScroll = true;
             this.panelMain.Dock = Wisej.Web.DockStyle.Fill;
-            this.panelMain.Location = new System.Drawing.Point(210, 86);
+            this.panelMain.Location = new System.Drawing.Point(70, 86);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(591, 442);
+            this.panelMain.Size = new System.Drawing.Size(731, 442);
             this.panelMain.TabIndex = 6;
+            this.panelMain.TabStop = true;
             // 
             // UserDashboard
             // 
@@ -192,6 +197,7 @@ namespace E_Library.Dashboard
             this.Text = "UserDashboard";
             this.WindowState = Wisej.Web.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.UserDashboard_Load);
+            this.Appear += new System.EventHandler(this.UserDashboard_Appear);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -207,10 +213,10 @@ namespace E_Library.Dashboard
         private Wisej.Web.Ext.NavigationBar.NavigationBarItem navBookmark;
         private Wisej.Web.Ext.NavigationBar.NavigationBarItem navLibrary;
         private Wisej.Web.Button btnUser;
-        private Wisej.Web.MenuItem menuItem1;
         private Wisej.Web.MenuItem menuLogout;
         private Wisej.Web.Button btnNavShow;
         private Wisej.Web.MenuItem menuProfile;
         private Wisej.Web.Panel panelMain;
+        private Wisej.Web.MenuItem menuUser;
     }
 }

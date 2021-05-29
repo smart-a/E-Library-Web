@@ -18,4 +18,12 @@ namespace E_Library.Models
         public double Amount { set; get; }
         public DateTime PaidAt { set; get; }
     }
+
+    public class PaymentHistoryDisplay
+    {
+        public Guid Id { set; get; }
+        public string Fullname { set; get; }
+        public string Amount { set; get; }
+        public string Date { set; get; }
+    }
 }

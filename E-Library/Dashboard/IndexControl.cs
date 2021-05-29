@@ -1,4 +1,5 @@
-﻿using E_Library.Data;
+﻿using E_Library.Dashboard.Components;
+using E_Library.Data;
 using E_Library.Models;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,14 @@ namespace E_Library.Dashboard
     {
         ApplicationDbContext _context;
         User currentUser;
+        object MyParent;
 
-        public IndexControl(User user)
+        public IndexControl(object Owner, User user)
         {
             InitializeComponent();
             _context = new ApplicationDbContext();
             currentUser = user;
+            MyParent = Owner;
         }
 
         private void IndexControl_Load(object sender, EventArgs e)
@@ -35,11 +38,9 @@ namespace E_Library.Dashboard
 
         private void LoadCategories()
         {
-            _context = new ApplicationDbContext();
-            var categoryList = _context.Categories.ToList();
-
-            cbCategory.DataSource = categoryList.Select((c) => c.CategoryName);
-            cbCategory.Items.Insert(0, "All");
+            var categoryList = _context.Categories.Select((c) => c.CategoryName).ToList();
+            categoryList.Insert(0, "All");
+            cbCategory.DataSource = categoryList;
         }
 
         public void LoadBooks(List<Book> param = null)
@@ -51,17 +52,15 @@ namespace E_Library.Dashboard
             }
 
             var books = bookList.Select((b) =>
-                 new
+                 new BookDisplay
                  {
-                     b.Id,
+                     Id = b.Id,
                      Category = b.Category.CategoryName,
-                     b.BookName,
+                     BookName = b.BookName,
                      Course = b.Course.CourseName,
                      Subscription = b.Subscription.SubscriptionName,
                      Amount = b.Subscription.Amount.ToString("###,##0.00")
-                 }).ToList<object>();
-
-            //usersList = new BindingList<object>(users);
+                 }).ToList();
 
             dataGridView1.DataSource = books;
             dataGridView1.Columns["Id"].Visible = false;
@@ -73,10 +72,12 @@ namespace E_Library.Dashboard
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var currentBook = (Book)dataGridView1.CurrentRow.DataBoundItem;
+            var Id = Guid.Parse(dataGridView1.CurrentRow[0].Value.ToString());
+            var currentBook = _context.Books.SingleOrDefault((b) => b.Id == Id);
             if (currentBook != null)
             {
-
+                BookDetails bookDetails = new BookDetails(MyParent, currentUser, currentBook);
+                bookDetails.ShowDialog();
             }
         }
 
@@ -88,6 +89,11 @@ namespace E_Library.Dashboard
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (txtSearch.Text == "")
+            {
+                LoadBooks();
+                return;
+            }
             var bookList = _context.Books.Where((b) =>
                 b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
 

@@ -29,10 +29,10 @@ namespace E_Library.Dashboard
         /// </summary>
         private void InitializeComponent()
         {
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle7 = new Wisej.Web.DataGridViewCellStyle();
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle8 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle1 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle2 = new Wisej.Web.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProfileControl));
-            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle9 = new Wisej.Web.DataGridViewCellStyle();
+            Wisej.Web.DataGridViewCellStyle dataGridViewCellStyle3 = new Wisej.Web.DataGridViewCellStyle();
             this.panel1 = new Wisej.Web.Panel();
             this.panel5 = new Wisej.Web.Panel();
             this.btnRefresh = new Wisej.Web.Button();
@@ -55,13 +55,15 @@ namespace E_Library.Dashboard
             // 
             // panel1
             // 
+            this.panel1.AutoScroll = true;
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = Wisej.Web.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 592);
+            this.panel1.Size = new System.Drawing.Size(800, 846);
             this.panel1.TabIndex = 1;
+            this.panel1.TabStop = true;
             // 
             // panel5
             // 
@@ -77,6 +79,7 @@ namespace E_Library.Dashboard
             this.panel5.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel5.ResponsiveProfiles"))));
             this.panel5.Size = new System.Drawing.Size(701, 639);
             this.panel5.TabIndex = 14;
+            this.panel5.TabStop = true;
             // 
             // btnRefresh
             // 
@@ -96,7 +99,7 @@ namespace E_Library.Dashboard
             this.dtpTo.LabelText = "To";
             this.dtpTo.Location = new System.Drawing.Point(126, 94);
             this.dtpTo.Name = "dtpTo";
-            this.dtpTo.Size = new System.Drawing.Size(98, 43);
+            this.dtpTo.Size = new System.Drawing.Size(98, 44);
             this.dtpTo.TabIndex = 7;
             this.dtpTo.Value = new System.DateTime(2021, 5, 16, 16, 40, 56, 708);
             this.dtpTo.ValueChanged += new System.EventHandler(this.dtpTo_ValueChanged);
@@ -109,7 +112,7 @@ namespace E_Library.Dashboard
             this.dtpFrom.LabelText = "From";
             this.dtpFrom.Location = new System.Drawing.Point(22, 94);
             this.dtpFrom.Name = "dtpFrom";
-            this.dtpFrom.Size = new System.Drawing.Size(98, 43);
+            this.dtpFrom.Size = new System.Drawing.Size(98, 44);
             this.dtpFrom.TabIndex = 6;
             this.dtpFrom.Value = new System.DateTime(2021, 5, 16, 16, 40, 56, 708);
             this.dtpFrom.ValueChanged += new System.EventHandler(this.dtpFrom_ValueChanged);
@@ -138,21 +141,22 @@ namespace E_Library.Dashboard
             // 
             this.dataGridView1.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
             | Wisej.Web.AnchorStyles.Right)));
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("default", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(22, 151);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("dataGridView1.ResponsiveProfiles"))));
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(651, 428);
             this.dataGridView1.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.Anchor = Wisej.Web.AnchorStyles.Top;
             this.panel2.Controls.Add(this.lblWallet);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.btnFundWallet);
@@ -161,6 +165,7 @@ namespace E_Library.Dashboard
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(698, 73);
             this.panel2.TabIndex = 0;
+            this.panel2.TabStop = true;
             // 
             // lblWallet
             // 
@@ -169,7 +174,7 @@ namespace E_Library.Dashboard
             this.lblWallet.ForeColor = System.Drawing.Color.Green;
             this.lblWallet.Location = new System.Drawing.Point(206, 22);
             this.lblWallet.Name = "lblWallet";
-            this.lblWallet.Size = new System.Drawing.Size(82, 23);
+            this.lblWallet.Size = new System.Drawing.Size(80, 23);
             this.lblWallet.TabIndex = 7;
             this.lblWallet.Text = "N12,500";
             this.lblWallet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -197,6 +202,7 @@ namespace E_Library.Dashboard
             this.btnFundWallet.TabIndex = 2;
             this.btnFundWallet.Text = "Fund Wallet";
             this.btnFundWallet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFundWallet.Click += new System.EventHandler(this.btnFundWallet_Click);
             // 
             // label1
             // 
@@ -212,7 +218,7 @@ namespace E_Library.Dashboard
             // 
             this.Controls.Add(this.panel1);
             this.Name = "ProfileControl";
-            this.Size = new System.Drawing.Size(800, 592);
+            this.Size = new System.Drawing.Size(800, 846);
             this.Load += new System.EventHandler(this.ProfileControl_Load);
             this.Appear += new System.EventHandler(this.ProfileControl_Appear);
             this.panel1.ResumeLayout(false);

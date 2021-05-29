@@ -44,22 +44,13 @@ namespace E_Library.Admin.Dashboard
             }
         }
 
-        private void NavigateMenu(Control control)
+        public void NavigateMenu(Control control)
         {
             panelMain.Controls.Clear();
             control.Dock = DockStyle.Fill;
             panelMain.Controls.Add(control);
             btnNavShow.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/bars.svg";
             btnNavShow.Tag = "show";
-
-            //if (Application.ActiveProfile.Device == "Mobile")
-            //{
-            //    navigationBar1.Width = 0;
-            //}
-            //else
-            //{
-            //    navigationBar1.CompactView = true;
-            //}
             navigationBar1.CompactView = true;
         }
 
@@ -77,7 +68,7 @@ namespace E_Library.Admin.Dashboard
 
         private void navBooks_Click(object sender, EventArgs e)
         {
-            BooksControl control = new BooksControl();
+            BooksControl control = new BooksControl(this);
             NavigateMenu(control);
         }
 
@@ -94,6 +85,12 @@ namespace E_Library.Admin.Dashboard
                 Application.Browser.LocalStorage.RemoveValue("e_library_admin");
                 Application.Navigate("/Admin");
             }
+        }
+
+        private void AdminDashboard_Load(object sender, EventArgs e)
+        {
+            StudentsControl control = new StudentsControl();
+            NavigateMenu(control);
         }
     }
 }

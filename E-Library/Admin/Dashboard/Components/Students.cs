@@ -24,7 +24,7 @@ namespace E_Library.Admin.Dashboard.Components
         {
             if (_user != null)
             {
-                txtStudentNumber.Text = _user.Fullname;
+                txtStudentNumber.Text = _user.StudentNumber;
                 txtStudentNumber.ReadOnly = true;
                 txtFullname.Text = _user.Fullname;
                 var _ = _user.Gender == "Male" ? radioMale.Checked = true : radioFemale.Checked = true;
@@ -76,7 +76,8 @@ namespace E_Library.Admin.Dashboard.Components
                     MessageBox.Show("Student record updated");
                     this.Dispose();
                 }
-
+                var parent = (StudentsControl)MyParent;
+                parent.LoadUsers();
             }
             catch
             {
@@ -117,12 +118,6 @@ namespace E_Library.Admin.Dashboard.Components
         private bool UserExists(User user)
         {
             return _context.Users.Any((e) => e.StudentNumber == user.StudentNumber);
-        }
-
-        private void Students_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            var parent = (StudentsControl)MyParent;
-            parent.LoadUsers();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using E_Library.Data;
+﻿using E_Library.Dashboard.Components;
+using E_Library.Data;
 using E_Library.Models;
 using System;
 using System.Collections.Generic;
@@ -11,21 +12,19 @@ namespace E_Library.Dashboard
     {
         ApplicationDbContext _context;
         User currentUser;
+        object MyParent;
 
-        public BookmarksControl(User user)
+        public BookmarksControl(object Owner, User user)
         {
             InitializeComponent();
             _context = new ApplicationDbContext();
             currentUser = user;
+            MyParent = Owner;
         }
 
         private void BookmarksControl_Load(object sender, EventArgs e)
         {
-            _context = new ApplicationDbContext();
-            var categoryList = _context.Categories.ToList();
-
-            cbCategory.DataSource = categoryList.Select((c) => c.CategoryName);
-            cbCategory.Items.Insert(0, "All");
+           
         }
 
         private void BookmarksControl_Appear(object sender, EventArgs e)
@@ -43,15 +42,15 @@ namespace E_Library.Dashboard
             }
 
             var books = bookmarkList.Select((b) =>
-                 new
+                 new BookDisplay
                  {
-                     b.Id,
+                     Id = b.Id,
                      Category = b.Book.Category.CategoryName,
                      BookName = b.Book.BookName,
                      Course = b.Book.Course.CourseName,
                      Subscription = b.Book.Subscription.SubscriptionName,
                      Amount = b.Book.Subscription.Amount.ToString("###,##0.00")
-                 }).ToList<object>();
+                 }).ToList();
 
             //usersList = new BindingList<object>(users);
 
@@ -66,18 +65,20 @@ namespace E_Library.Dashboard
         private void LoadCategories()
         {
             _context = new ApplicationDbContext();
-            var categoryList = _context.Categories.ToList();
-
-            cbCategory.DataSource = categoryList.Select((c) => c.CategoryName);
-            cbCategory.Items.Insert(0, "All");
+            _context = new ApplicationDbContext();
+            var categoryList = _context.Categories.Select((c) => c.CategoryName).ToList();
+            categoryList.Insert(0, "All");
+            cbCategory.DataSource = categoryList;
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var currentBook = (Book)dataGridView1.CurrentRow.DataBoundItem;
+            var Id = Guid.Parse(dataGridView1.CurrentRow[0].Value.ToString());
+            var currentBook = _context.Books.SingleOrDefault((b) => b.Id == Id);
             if (currentBook != null)
             {
-
+                BookDetails bookDetails = new BookDetails(MyParent, currentUser, currentBook);
+                bookDetails.ShowDialog();
             }
         }
 
@@ -89,6 +90,11 @@ namespace E_Library.Dashboard
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (txtSearch.Text == "")
+            {
+                LoadBooks();
+                return;
+            }
             var bookmarkList = _context.Bookmarks.Where((b) => b.User.Id == currentUser.Id &&
                b.Book.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
 

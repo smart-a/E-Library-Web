@@ -22,6 +22,8 @@ namespace E_Library.Dashboard
 
         private void ProfileControl_Load(object sender, EventArgs e)
         {
+            dtpFrom.Value = DateTime.Now;
+            dtpTo.Value = DateTime.Now;
             lblWallet.Text = currentUser.Wallet.ToString("N###,##0.00");
         }
 
@@ -39,22 +41,17 @@ namespace E_Library.Dashboard
             }
 
             var histories = hList.Select((h) =>
-                   new
-                   {
-                       h.User.Fullname,
-                       h.User.Gender,
-                       Amount = h.Amount.ToString("###,##).00"),
-                       Date = h.PaidAt.ToString("dd MMM, yyyy")
-                   }).ToList<object>();
-
-            //historiesList = new BindingList<object>(histories);
+                new PaymentHistoryDisplay
+                {
+                    Id = h.Id,
+                    Fullname = h.User.Fullname,
+                    Amount = h.Amount.ToString("###,##).00"),
+                    Date = h.PaidAt.ToString("dd MMM, yyyy")
+                }).ToList();
 
             dataGridView1.DataSource = histories;
-            //dataGridView1.Columns["Id"].Visible = false;
-
-            //dataGridView1.Columns["StudentNumber"].HeaderText = "Student Number";
-            //dataGridView1.Columns["StudentNumber"].Width = 150;
-            dataGridView1.Columns["Fullname"].Width = 250;
+            dataGridView1.Columns["Id"].Visible = false;
+            dataGridView1.Columns["Fullname"].Width = 200;
         }
 
         private void Filter()
@@ -72,6 +69,8 @@ namespace E_Library.Dashboard
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            dtpFrom.Value = DateTime.Now;
+            dtpTo.Value = DateTime.Now;
             LoadHistory();
         }
 
@@ -83,6 +82,34 @@ namespace E_Library.Dashboard
         private void dtpTo_ValueChanged(object sender, EventArgs e)
         {
             Filter();
+        }
+
+        private void btnFundWallet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FundWallet fundWallet = new FundWallet();
+                fundWallet.ShowDialog();
+                if (fundWallet.IsSuccess)
+                {
+                    var amount = double.Parse(fundWallet.PaidAmount.ToString());
+                    currentUser.Wallet += amount;
+                    _context.Entry(currentUser).State = System.Data.Entity.EntityState.Modified;
+                    _context.SaveChanges();
+
+                    _context.PaymentHistories.Add(new PaymentHistory
+                    {
+                        User = currentUser,
+                        Amount = amount,
+                        PaidAt = DateTime.Now
+                    });
+                    _context.SaveChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

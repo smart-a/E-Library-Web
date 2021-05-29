@@ -6,6 +6,7 @@ using E_Library.Models;
 using E_Library.Data;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace E_Library.Admin.Dashboard.Components
 {
@@ -18,6 +19,9 @@ namespace E_Library.Admin.Dashboard.Components
         List<Subscription> subList;
         object MyParent;
         Book _book;
+        Guid bookId;
+        string bookPath;
+        bool IsBookSave;
 
         public Books(object owner, Book book = null)
         {
@@ -29,6 +33,13 @@ namespace E_Library.Admin.Dashboard.Components
 
         private void Books_Load(object sender, EventArgs e)
         {
+            bookId = Guid.NewGuid();
+            IsBookSave = false;
+        }
+
+        private void Books_Appear(object sender, EventArgs e)
+        {
+            LoadLists();
             if (_book != null)
             {
                 _book = _context.Books.SingleOrDefault((b) => b.Id == _book.Id);
@@ -37,12 +48,8 @@ namespace E_Library.Admin.Dashboard.Components
                 txtBookName.Text = _book.BookName;
                 cbCourse.Text = _book.Course.CourseName;
                 cbSub.Text = _book.Subscription.SubscriptionName;
+                SetPDFIcon();
             }
-        }
-
-        private void Books_Appear(object sender, EventArgs e)
-        {
-            LoadLists();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -54,22 +61,21 @@ namespace E_Library.Admin.Dashboard.Components
             }
             try
             {
-                _context = new ApplicationDbContext();
                 if (_book == null)
                 {
                     Book book = new Book
                     {
+                        Id = bookId,
                         Category = categoryList[cbCategory.SelectedIndex],
                         BookName = txtBookName.Text,
                         Course = courseList[cbCourse.SelectedIndex],
-                        Subscription = subList[cbSub.SelectedIndex]
+                        Subscription = subList[cbSub.SelectedIndex],
+                        BookPath = bookPath
                     };
-                    string ext = Path.GetExtension(files.ToString());
-                    book.BookPath = $"~/Books/{book.Id}.{ext}";
-                    UploadBook(files, book.BookPath);
 
                     _context.Books.Add(book);
                     _context.SaveChanges();
+                    IsBookSave = true;
                     MessageBox.Show("New book added");
                     ClearInput();
                 }
@@ -80,76 +86,74 @@ namespace E_Library.Admin.Dashboard.Components
                     _book.Course = courseList[cbCourse.SelectedIndex];
                     _book.Subscription = subList[cbSub.SelectedIndex];
 
-                    string ext = Path.GetExtension(files.ToString());
-                    _book.BookPath = $"~/Books/{_book.Id}.{ext}";
-                    UploadBook(files, _book.BookPath);
-
+                    _book.BookPath = (bookPath == null) ? _book.BookPath : bookPath;
                     _context.Entry(_book).State = System.Data.Entity.EntityState.Modified;
                     _context.SaveChanges();
                     MessageBox.Show("Book record updated");
                     this.Dispose();
                 }
+                var parent = (BooksControl)MyParent;
+                parent.LoadBooks();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Some error occur");
+                MessageBox.Show($"Some error occur \n{ex.StackTrace}");
             }
         }
 
         private void panelFile_DragEnter(object sender, DragEventArgs e)
         {
-            string file = (string)e.Data.GetData(DataFormats.FileDrop);
-            MessageBox.Show(file);
-            if (file.IndexOf("/pdf") > -1)
-            {
-                e.Effect = DragDropEffects.Copy;
-                return;
-            }
-            e.Effect = DragDropEffects.None;
+            e.Effect = DragDropEffects.Copy;
         }
 
         private void panelFile_DragDrop(object sender, DragEventArgs e)
         {
+            var fileType = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string type in fileType)
+            {
+                if (type.IndexOf("pdf") < 0)
+                {
+                    MessageBox.Show("Invalid file, please drop a pdf file");
+                    return;
+                }
+            }
+
             files = (HttpFileCollection)e.Data.GetData(DataFormats.Files);
+            UploadBook();
         }
 
-        private void UploadBook(HttpFileCollection files, string path)
+        private void UploadBook()
         {
-            if (files == null)
-                return;
-
-            if (files.Count == 0)
+            try
             {
-                //this.pictureBox.Image = null;
-            }
-            else
-            {
-                if (File.Exists(path))
+                var appPath = Application.MapPath("./");
+                bookPath = (_book != null) ? _book.BookPath : "";
+                if (files != null)
                 {
-                    File.Delete(path);
+                    bookPath = $"{appPath}/Books/{bookId}.pdf";
+                    files[0].SaveAs(bookPath);
+                    SetPDFIcon();
+                    MessageBox.Show("Upload complete");
                 }
-                //this.pictureBox.Image = GetImageFromStream(files[0].InputStream);
-                string dragedFile = files.ToString();
-                File.Copy(dragedFile, path);
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void LoadLists()
         {
-            _context = new ApplicationDbContext();
             categoryList = _context.Categories.ToList();
-            cbCategory.DataSource = categoryList.Select((c) => c.CategoryName);
+            cbCategory.DataSource = categoryList.Select((c) => c.CategoryName).ToList();
             cbCategory.Text = "";
 
-            _context = new ApplicationDbContext();
             courseList = _context.Courses.ToList();
-            cbCourse.DataSource = courseList.Select((c) => c.CourseName);
+            cbCourse.DataSource = courseList.Select((c) => c.CourseName).ToList();
             cbCourse.Text = "";
 
-            _context = new ApplicationDbContext();
             subList = _context.Subscriptions.ToList();
-            cbSub.DataSource = subList.Select((s) => s.SubscriptionName);
+            cbSub.DataSource = subList.Select((s) => s.SubscriptionName).ToList();
             cbSub.Text = "";
         }
 
@@ -175,9 +179,9 @@ namespace E_Library.Admin.Dashboard.Components
                 cbSub.Focus();
                 return false;
             }
-            if (files == null)
+            if (_book == null && files == null)
             {
-                MessageBox.Show("Upload book");
+                MessageBox.Show("Please select book to Upload ");
                 panelFile.Focus();
                 return false;
             }
@@ -191,12 +195,55 @@ namespace E_Library.Admin.Dashboard.Components
             cbCourse.Text = "";
             cbSub.Text = "";
             cbCategory.Focus();
+            bookId = Guid.NewGuid();
+            bookPath = "";
+            IsBookSave = false;
+            panelFile.BackgroundImageSource = "resource.wx/Wisej.Ext.FontAwesome/cloud-upload.svg";
+        }
+
+        private void DeleteUnsaveBook()
+        {
+            if (!IsBookSave)
+            {
+                try
+                {
+                    if (File.Exists(bookPath))
+                    {
+                        File.Delete(bookPath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
         private void Books_FormClosed(object sender, FormClosedEventArgs e)
         {
-            var parent = (BooksControl)MyParent;
-            parent.LoadBooks();
+            DeleteUnsaveBook();
+        }
+
+        private void panelFile_Click(object sender, EventArgs e)
+        {
+            upload1.UploadFiles();
+        }
+
+        private void upload1_Uploaded(object sender, UploadedEventArgs e)
+        {
+            if (e.Files[0].ContentType.IndexOf("/pdf") < 0)
+            {
+                MessageBox.Show("Invalid file, please drop a pdf file");
+                return;
+            }
+            files = e.Files;
+            UploadBook();
+        }
+
+        private void SetPDFIcon()
+        {
+            panelFile.BackgroundImageSource = "resource.wx/Wisej.Ext.FontAwesome/file-pdf-o.svg";
         }
     }
+
 }

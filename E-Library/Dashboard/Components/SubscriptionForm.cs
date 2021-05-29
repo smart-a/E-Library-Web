@@ -31,7 +31,7 @@ namespace E_Library.Dashboard.Components
         {
             subList = _context.Subscriptions.ToList();
 
-            cbSubscription.DataSource = subList.Select((s) => s.SubscriptionName);
+            cbSubscription.DataSource = subList.Select((s) => s.SubscriptionName).ToList();
             cbSubscription.Text = "";
         }
 
@@ -43,7 +43,7 @@ namespace E_Library.Dashboard.Components
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (cbSubscription.Text == "")
+            if (cbSubscription.Text == "" || txtAmount.Text == "0")
             {
                 cbSubscription.Focus();
                 return;

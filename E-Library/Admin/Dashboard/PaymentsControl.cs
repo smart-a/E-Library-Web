@@ -36,21 +36,16 @@ namespace E_Library.Admin.Dashboard
             }
 
             var histories = hList.Select((h) =>
-                   new
+                   new PaymentHistoryDisplay
                    {
-                       h.User.Fullname,
-                       h.User.Gender,
+                       Id = h.Id,
+                       Fullname = h.User.Fullname,
                        Amount = h.Amount.ToString("###,##).00"),
                        Date = h.PaidAt.ToString("dd MMM, yyyy")
-                   }).ToList<object>();
-
-            //historiesList = new BindingList<object>(histories);
+                   }).ToList();
 
             dataGridView1.DataSource = histories;
-            //dataGridView1.Columns["Id"].Visible = false;
-
-            //dataGridView1.Columns["StudentNumber"].HeaderText = "Student Number";
-            //dataGridView1.Columns["StudentNumber"].Width = 150;
+            dataGridView1.Columns["Id"].Visible = false;
             dataGridView1.Columns["Fullname"].Width = 250;
 
             var total = hList.Sum((h) => h.Amount);

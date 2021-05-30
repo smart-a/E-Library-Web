@@ -45,7 +45,7 @@ namespace E_Library.Dashboard
                 {
                     Id = h.Id,
                     Fullname = h.User.Fullname,
-                    Amount = h.Amount.ToString("###,##).00"),
+                    Amount = h.Amount.ToString("###,##0.00"),
                     Date = h.PaidAt.ToString("dd MMM, yyyy")
                 }).ToList();
 
@@ -88,6 +88,7 @@ namespace E_Library.Dashboard
         {
             try
             {
+                _context = new ApplicationDbContext();
                 FundWallet fundWallet = new FundWallet();
                 fundWallet.ShowDialog();
                 if (fundWallet.IsSuccess)
@@ -97,6 +98,7 @@ namespace E_Library.Dashboard
                     _context.Entry(currentUser).State = System.Data.Entity.EntityState.Modified;
                     _context.SaveChanges();
 
+                    
                     _context.PaymentHistories.Add(new PaymentHistory
                     {
                         User = currentUser,
@@ -104,6 +106,9 @@ namespace E_Library.Dashboard
                         PaidAt = DateTime.Now
                     });
                     _context.SaveChanges();
+
+                    LoadHistory();
+                    lblWallet.Text = currentUser.Wallet.ToString("N###,##0.00");
                 }
             }
             catch(Exception ex)

@@ -244,6 +244,15 @@ namespace E_Library.Admin.Dashboard.Components
         {
             panelFile.BackgroundImageSource = "resource.wx/Wisej.Ext.FontAwesome/file-pdf-o.svg";
         }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            //Application.Navigate(bookPath, "_blank");
+            if (bookPath != "")
+            {
+                File.OpenRead(bookPath);
+            }
+        }
     }
 
 }

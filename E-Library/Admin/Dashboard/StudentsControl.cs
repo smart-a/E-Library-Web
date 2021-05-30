@@ -2,6 +2,7 @@
 using E_Library.Data;
 using E_Library.Models;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -91,14 +92,16 @@ namespace E_Library.Admin.Dashboard
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtSearch.Text == "")
+            var search = txtSearch.Text;
+            if (search == "")
             {
                 LoadUsers();
                 return;
             }
-            var users = _context.Users.Where((u) =>
-                u.StudentNumber.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase) ||
-                u.Fullname.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+            var users = _context.Users.ToList();
+            users = users.Where((u) =>
+                u.StudentNumber.StartsWith(search, StringComparison.OrdinalIgnoreCase) ||
+                u.Fullname.StartsWith(search, StringComparison.OrdinalIgnoreCase)).ToList();
             LoadUsers(users);
         }
 

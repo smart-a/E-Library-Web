@@ -47,10 +47,10 @@ namespace E_Library.Admin.Dashboard
             dataGridView1.Columns["BookName"].HeaderText = "Book Name";
             dataGridView1.Columns["BookName"].Width = 150;
 
-            var buttonCol = new DataGridViewButtonColumn();
+            var buttonCol = new DataGridViewImageColumn(); //DataGridViewButtonColumn
             buttonCol.Name = "ViewBook";
-            buttonCol.HeaderText = "Header";
-            buttonCol.Text = "View";
+            buttonCol.HeaderText = "View";
+            buttonCol.CellImageSource = "resource.wx/Wisej.Ext.FontAwesome/eye.svg";
             dataGridView1.Columns.Add(buttonCol);
         }
 
@@ -105,14 +105,16 @@ namespace E_Library.Admin.Dashboard
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtSearch.Text == "")
+            var search = txtSearch.Text;
+            if (search == "")
             {
                 LoadBooks();
                 return;
             }
-            var bookList = _context.Books.Where((b) =>
-                b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase) ||
-                b.Category.CategoryName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+            var bookList = _context.Books.ToList();
+            bookList =  bookList.Where((b) =>
+                b.BookName.StartsWith(search, StringComparison.OrdinalIgnoreCase) ||
+                b.Category.CategoryName.StartsWith(search, StringComparison.OrdinalIgnoreCase)).ToList();
 
             LoadBooks(bookList);
         }

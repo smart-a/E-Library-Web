@@ -80,7 +80,7 @@ namespace E_Library.Dashboard.Components
             this.cbSubscription.Size = new System.Drawing.Size(298, 42);
             this.cbSubscription.TabIndex = 9;
             this.cbSubscription.Watermark = "Select Subscription";
-            this.cbSubscription.SelectedIndexChanged += new System.EventHandler(this.cbSubscription_SelectedIndexChanged);
+            this.cbSubscription.SelectedItemChanged += new System.EventHandler(this.cbSubscription_SelectedItemChanged);
             // 
             // txtAmount
             // 

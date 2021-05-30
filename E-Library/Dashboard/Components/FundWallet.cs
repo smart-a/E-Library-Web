@@ -18,7 +18,7 @@ namespace E_Library.Dashboard.Components
 
         private void nudAmount_ValueChanged(object sender, EventArgs e)
         {
-            var amt = nudAmount.Value;
+            var amt = nudAmount.Value.ToString("###,##0");
             btnPay.Text = $"Pay NGN {amt}";
         }
 
@@ -38,7 +38,7 @@ namespace E_Library.Dashboard.Components
                 nudAmount.Focus();
                 return;
             }
-            if(txtCarcNumber.TextLength < 16)
+            if(txtCarcNumber.Text.Length < 16 || txtCarcNumber.Text.Length > 19)
             {
                 txtCarcNumber.Focus();
                 return;
@@ -55,6 +55,8 @@ namespace E_Library.Dashboard.Components
             }
             success = true;
             amount = nudAmount.Value;
+            MessageBox.Show("Payment successful");
+            this.Dispose();
         }
     }
 }

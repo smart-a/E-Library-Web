@@ -1,6 +1,7 @@
 ﻿using E_Library.Data;
 using E_Library.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Wisej.Web;
 
@@ -10,6 +11,7 @@ namespace E_Library.Dashboard
     {
         ApplicationDbContext _context;
         User currentUser;
+        List<UserSubscription> userSub;
 
         public UserDashboard(User user)
         {
@@ -30,7 +32,6 @@ namespace E_Library.Dashboard
             else if (btnNavShow.Tag.ToString() == "hide")
             {
                 btnNavShow.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/bars.svg";
-                //navigationBar1.Width = 0;
                 navigationBar1.CompactView = true;
                 btnNavShow.Tag = "show";
             }
@@ -38,19 +39,40 @@ namespace E_Library.Dashboard
 
         public void LoadStatus()
         {
+            currentUser = _context.Users.SingleOrDefault((u) => u.Id == currentUser.Id);
             var bookmarks = _context.Bookmarks.Where((b) => b.User.Id == currentUser.Id).Count();
             navBookmark.InfoText = $" {bookmarks.ToString()} ";
 
             _context = new ApplicationDbContext();
-            var userSub = _context.UserSubscriptions.SingleOrDefault((s) => s.User.Id == currentUser.Id &&
-                    s.SubStatus == 1);
+            userSub = _context.UserSubscriptions.Where((s) => s.User.Id == currentUser.Id &&
+                    s.SubStatus == 1).ToList();
 
             var subBooks = 0;
-            if (userSub != null)
+            if (userSub != null || userSub.Count > 0)
             {
-                subBooks = _context.Books.Where((b) => b.Subscription.Id == userSub.Id).Count();
+                userSub.ForEach((s) =>
+                {
+                    subBooks += _context.Books.Where((b) => b.Subscription.Id == s.Subscription.Id).Count();
+                });
             }
             navLibrary.InfoText = $" {subBooks.ToString()} ";
+        }
+
+        private void CheckSub()
+        {
+            if (userSub.Count > 0)
+            {
+                userSub.ForEach((s) =>
+                {
+                    var dateDiff = (DateTime.Now - s.SubDate).Days;
+                    if (dateDiff > 30)
+                    {
+                        s.SubStatus = 0;
+                        _context.Entry(s).State = System.Data.Entity.EntityState.Modified;
+                        _context.SaveChanges();
+                    }
+                });
+            }
         }
 
         private void UserDashboard_Appear(object sender, EventArgs e)
@@ -64,7 +86,7 @@ namespace E_Library.Dashboard
             }
 
             LoadStatus();
-
+            CheckSub();
         }
 
         public void NavigateMenu(Control control)

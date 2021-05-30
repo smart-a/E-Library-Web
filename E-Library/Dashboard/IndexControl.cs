@@ -94,7 +94,8 @@ namespace E_Library.Dashboard
                 LoadBooks();
                 return;
             }
-            var bookList = _context.Books.Where((b) =>
+            var bookList = _context.Books.ToList();
+            bookList = bookList.Where((b) =>
                 b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
 
             LoadBooks(bookList);

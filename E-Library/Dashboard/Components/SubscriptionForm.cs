@@ -33,12 +33,16 @@ namespace E_Library.Dashboard.Components
 
             cbSubscription.DataSource = subList.Select((s) => s.SubscriptionName).ToList();
             cbSubscription.Text = "";
+            txtAmount.Text = "0";
         }
 
-        private void cbSubscription_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbSubscription_SelectedItemChanged(object sender, EventArgs e)
         {
             var index = cbSubscription.SelectedIndex;
-            txtAmount.Text = subList[index].Amount.ToString("###,##0.00");
+            if (index > -1)
+            {
+                txtAmount.Text = subList[index].Amount.ToString("###,##0.00");
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -56,42 +60,33 @@ namespace E_Library.Dashboard.Components
                     MessageBox.Show("Sorry, you don't have enough balance to opt-in for this subscription");
                     return;
                 }
-
-                var existSub = ExistSub();
-                if (existSub != null)
+                var selectedSub = subList[cbSubscription.SelectedIndex].Id;
+                if (IsExistSub(selectedSub))
                 {
-                    if (existSub.SubStatus == 1)
-                    {
-                        var result = MessageBox.Show("You have an existing subscription, clickong OK will override the current subscription",
-                        "Subscription", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.Cancel)
-                        {
-                            return;
-                        }
-                    }
-                    existSub.Subscription = subList[cbSubscription.SelectedIndex];
-                    existSub.SubStatus = 1;
-                    existSub.SubDate = DateTime.Now;
-                    OverrideExistSub(existSub);
+                    MessageBox.Show("You have an existing record of this subscription");
+                    return;
                 }
-                else
+                
+                var sub = _context.Subscriptions.SingleOrDefault((s) => s.Id == selectedSub);
+                var user = _context.Users.SingleOrDefault((u) => u.Id == currentUser.Id);
+                UserSubscription newSub = new UserSubscription
                 {
-                    _context = new ApplicationDbContext();
-                    UserSubscription newSub = new UserSubscription
-                    {
-                        User = currentUser,
-                        Subscription = subList[cbSubscription.SelectedIndex]
-                    };
-                    _context.UserSubscriptions.Add(newSub);
-                    _context.SaveChanges();
-                }
+                    User = user,
+                    Subscription = sub
+                };
+                _context.UserSubscriptions.Add(newSub);
+                _context.SaveChanges();
+
+                user.Wallet -= sub.Amount;
+                _context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                _context.SaveChanges();
+
                 MessageBox.Show("You have successfully opt-in a new subscription");
                 this.Dispose();
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("Some errors occur");
+                MessageBox.Show($"{ ex.Message} - { ex.StackTrace}");
             }
         }
 
@@ -103,16 +98,16 @@ namespace E_Library.Dashboard.Components
             _context.SaveChanges();
         }
 
-        private UserSubscription ExistSub()
+        private bool IsExistSub(Guid newSubId)
         {
             _context = new ApplicationDbContext();
-            return _context.UserSubscriptions.SingleOrDefault((s) => s.User.Id == currentUser.Id);
+            return _context.UserSubscriptions.Any((s) => s.User.Id == currentUser.Id &&
+                    s.Subscription.Id == newSubId && s.SubStatus == 1);
         }
 
         private void SubscriptionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            var parent = (LibrayControl)MyParent;
-            parent.LoadSub();
+
         }
     }
 }

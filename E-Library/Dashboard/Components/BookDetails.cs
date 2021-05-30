@@ -32,7 +32,7 @@ namespace E_Library.Dashboard.Components
         private void BookDetails_Appear(object sender, EventArgs e)
         {
             CheckBookmarked();
-            this.Text += $" {_book.BookName}";
+            this.Text += $" - {_book.BookName}";
             lblBookName.Text = _book.BookName;
             lblCategory.Text = _book.Category.CategoryName;
             lblCourse.Text = _book.Course.CourseName;
@@ -48,9 +48,9 @@ namespace E_Library.Dashboard.Components
         {
             if (_user.UserType == User.UserEnum.Member)
             {
-                //_context = new ApplicationDbContext();
                 var IsAccessible = _context.UserSubscriptions.Any(
-                    (b) => b.User.Id == _user.Id && b.Subscription.Id == _book.Subscription.Id);
+                    (s) => s.User.Id == _user.Id && s.Subscription.Id == _book.Subscription.Id &&
+                        s.SubStatus == 1);
 
                 if (!IsAccessible)
                 {
@@ -69,10 +69,12 @@ namespace E_Library.Dashboard.Components
         {
             if (cbBookmark.Checked)
             {
+                var user = _context.Users.SingleOrDefault((u) => u.Id == _user.Id);
+                var book = _context.Books.SingleOrDefault((b) => b.Id == _book.Id);
                 var bookmark = new Bookmark
                 {
-                    User = _user,
-                    Book = _book
+                    User = user,
+                    Book = book
                 };
                 _context.Bookmarks.Add(bookmark);
                 _context.SaveChanges();

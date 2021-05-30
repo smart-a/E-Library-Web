@@ -31,8 +31,8 @@ namespace E_Library.Dashboard.Components
         {
             this.lblBookName = new Wisej.Web.Label();
             this.panel1 = new Wisej.Web.Panel();
-            this.label2 = new Wisej.Web.Label();
             this.lblCategory = new Wisej.Web.Label();
+            this.label2 = new Wisej.Web.Label();
             this.panel2 = new Wisej.Web.Panel();
             this.lblCourse = new Wisej.Web.Label();
             this.label5 = new Wisej.Web.Label();
@@ -52,7 +52,7 @@ namespace E_Library.Dashboard.Components
             // 
             // lblBookName
             // 
-            this.lblBookName.Font = new System.Drawing.Font("default", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.lblBookName.Font = new System.Drawing.Font("default", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lblBookName.Location = new System.Drawing.Point(34, 12);
             this.lblBookName.Name = "lblBookName";
             this.lblBookName.Size = new System.Drawing.Size(382, 40);
@@ -62,6 +62,7 @@ namespace E_Library.Dashboard.Components
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = Wisej.Web.BorderStyle.Solid;
             this.panel1.Controls.Add(this.lblCategory);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Location = new System.Drawing.Point(34, 80);
@@ -69,15 +70,6 @@ namespace E_Library.Dashboard.Components
             this.panel1.Size = new System.Drawing.Size(382, 44);
             this.panel1.TabIndex = 1;
             this.panel1.TabStop = true;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.label2.Location = new System.Drawing.Point(12, 11);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Book Category:";
             // 
             // lblCategory
             // 
@@ -88,8 +80,18 @@ namespace E_Library.Dashboard.Components
             this.lblCategory.TabIndex = 1;
             this.lblCategory.Text = "Category Name";
             // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.label2.Location = new System.Drawing.Point(12, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(130, 23);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Book Category:";
+            // 
             // panel2
             // 
+            this.panel2.BorderStyle = Wisej.Web.BorderStyle.Solid;
             this.panel2.Controls.Add(this.lblCourse);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Location = new System.Drawing.Point(34, 130);
@@ -118,6 +120,7 @@ namespace E_Library.Dashboard.Components
             // 
             // panel3
             // 
+            this.panel3.BorderStyle = Wisej.Web.BorderStyle.Solid;
             this.panel3.Controls.Add(this.lblSub);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Location = new System.Drawing.Point(34, 180);
@@ -146,6 +149,7 @@ namespace E_Library.Dashboard.Components
             // 
             // panel4
             // 
+            this.panel4.BorderStyle = Wisej.Web.BorderStyle.Solid;
             this.panel4.Controls.Add(this.lblAmount);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Location = new System.Drawing.Point(34, 230);

@@ -12,7 +12,7 @@ namespace E_Library.Dashboard
     {
         ApplicationDbContext _context;
         User currentUser;
-        UserSubscription currentSub;
+        List<UserSubscription> currentSub;
         object MyParent;
 
         public LibrayControl(object Owner, User user)
@@ -41,9 +41,14 @@ namespace E_Library.Dashboard
             var subBookList = param;
             if (subBookList == null || subBookList.Count < 1)
             {
-                _context = new ApplicationDbContext();
-                subBookList = _context.Books.Where((b) => b.Subscription.Id == currentSub.Subscription.Id).ToList();
-                if(currentUser.UserType == User.UserEnum.Student)
+                subBookList = new List<Book>();
+                currentSub.ForEach((s) =>
+                {
+                    var book = _context.Books.Where((b) => b.Subscription.Id == s.Subscription.Id);
+                    subBookList.AddRange(book);
+                });
+
+                if (currentUser.UserType == User.UserEnum.Student)
                 {
                     subBookList = _context.Books.ToList();
                 }
@@ -70,60 +75,56 @@ namespace E_Library.Dashboard
 
         private void LoadCategories()
         {
-            _context = new ApplicationDbContext();
-            var categoryList = _context.Categories.ToList();
-
-            cbCategory.DataSource = categoryList.Select((c) => c.CategoryName);
-            cbCategory.Items.Insert(0, "All");
+            var categoryList = _context.Categories.Select((c) => c.CategoryName).ToList();
+            categoryList.Insert(0, "All");
+            cbCategory.DataSource = categoryList;
         }
 
         public void LoadSub()
         {
-            currentSub = _context.UserSubscriptions.SingleOrDefault((b) =>
-                    b.User.Id == currentUser.Id && b.SubStatus == 1);
+            currentSub = _context.UserSubscriptions.Where((s) =>
+                    s.User.Id == currentUser.Id && s.SubStatus == 1).ToList();
 
-
-            if (currentSub == null)
+            if (currentSub.Count < 1)
             {
                 tagTextSub.Text = "No active subscription";
                 panelSubBook.Enabled = false;
                 return;
             }
 
-            CheckSub();
+            var subArray = currentSub.Select((s) => s.Subscription.SubscriptionName).ToArray();
+            tagTextSub.Text = string.Join(",", subArray);
+            panelSubBook.Enabled = true;
+
             LoadCategories();
             LoadBooks();
         }
 
-        private void CheckSub()
+        private void cbCategory_SelectedItemChanged(object sender, EventArgs e)
         {
-            var dateDiff = (DateTime.Now - currentSub.SubDate).Days;
-            if (dateDiff > 0)
+            if (cbCategory.Items.Count > 0)
             {
-                currentSub.SubStatus = 0;
-                _context.Entry(currentSub).State = System.Data.Entity.EntityState.Modified;
-                _context.SaveChanges();
-            }
+                txtSearch.Clear();
+                if (cbCategory.SelectedIndex == 0)
+                {
+                    LoadBooks();
+                    return;
+                }
 
-            tagTextSub.Text = currentSub.Subscription.SubscriptionName;
-            panelSubBook.Enabled = true;
-        }
+                var subBookList = new List<Book>();
+                currentSub.ForEach((s) =>
+                {
+                    var book = _context.Books.Where((b) => b.Subscription.Id == s.Subscription.Id &&
+                        b.Category.CategoryName == cbCategory.Text);
+                    subBookList.AddRange(book);
+                });
 
-        private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtSearch.Clear();
-            if (cbCategory.SelectedIndex == 0)
-            {
-                LoadBooks();
-                return;
+                if (currentUser.UserType == User.UserEnum.Student)
+                {
+                    subBookList = _context.Books.Where((b) => b.Category.CategoryName == cbCategory.Text).ToList();
+                }
+                LoadBooks(subBookList);
             }
-            var subBookList = _context.Books.Where((b) => b.Subscription.Id == currentSub.Subscription.Id &&
-                b.Category.CategoryName == cbCategory.Text).ToList();
-            if (currentUser.UserType == User.UserEnum.Student)
-            {
-                subBookList = _context.Books.Where((b) => b.Category.CategoryName == cbCategory.Text).ToList();
-            }
-            LoadBooks(subBookList);
         }
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -150,21 +151,36 @@ namespace E_Library.Dashboard
                 LoadBooks();
                 return;
             }
-            var subBookList = _context.Books.Where((b) => b.Subscription.Id == currentSub.Subscription.Id &&
-               b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+            var subBookList = new List<Book>();
+            currentSub.ForEach((s) =>
+            {
+                var book = _context.Books.ToList();
+                book = book.Where((b) => b.Subscription.Id == s.Subscription.Id &&
+                    b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                subBookList.AddRange(book);
+            });
+
             if (cbCategory.SelectedIndex >1)
             {
-                subBookList = _context.Books.Where((b) => b.Subscription.Id == currentSub.Subscription.Id &&
-                b.Category.CategoryName == cbCategory.Text &&
-                b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                subBookList = new List<Book>();
+                currentSub.ForEach((s) =>
+                {
+                    var book = _context.Books.ToList();
+                    book = book.Where((b) => b.Subscription.Id == s.Subscription.Id &&
+                        b.Category.CategoryName == cbCategory.Text &&
+                        b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                    subBookList.AddRange(book);
+                });
             }
 
             if (currentUser.UserType == User.UserEnum.Student)
             {
-                subBookList = _context.Books.Where((b) => b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+                subBookList = _context.Books.ToList();
+                subBookList = subBookList.Where((b) => b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
                 if (cbCategory.SelectedIndex > 1)
                 {
-                    subBookList = _context.Books.Where((b) => b.Category.CategoryName == cbCategory.Text &&
+                    subBookList = _context.Books.ToList();
+                    subBookList = subBookList.Where((b) => b.Category.CategoryName == cbCategory.Text &&
                     b.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
             }
@@ -175,6 +191,10 @@ namespace E_Library.Dashboard
         {
             SubscriptionForm form = new SubscriptionForm(this, currentUser);
             form.ShowDialog();
+            LoadSub();
+            var parent = (UserDashboard)MyParent;
+            parent.LoadStatus();
         }
+
     }
 }

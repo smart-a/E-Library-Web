@@ -19,7 +19,8 @@ namespace E_Library.Admin.Dashboard
 
         private void PaymentsControl_Load(object sender, EventArgs e)
         {
-
+            dtpFrom.Value = DateTime.Now;
+            dtpTo.Value = DateTime.Now;
         }
 
         private void PaymentsControl_Appear(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace E_Library.Admin.Dashboard
                    {
                        Id = h.Id,
                        Fullname = h.User.Fullname,
-                       Amount = h.Amount.ToString("###,##).00"),
+                       Amount = h.Amount.ToString("###,##0.00"),
                        Date = h.PaidAt.ToString("dd MMM, yyyy")
                    }).ToList();
 

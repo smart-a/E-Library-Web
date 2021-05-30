@@ -29,8 +29,7 @@ namespace E_Library.Dashboard.Components
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            Wisej.Web.ComponentTool componentTool3 = new Wisej.Web.ComponentTool();
+            Wisej.Web.ComponentTool componentTool1 = new Wisej.Web.ComponentTool();
             this.panel1 = new Wisej.Web.Panel();
             this.nudMonth = new Wisej.Web.NumericUpDown();
             this.nudYear = new Wisej.Web.NumericUpDown();
@@ -40,7 +39,6 @@ namespace E_Library.Dashboard.Components
             this.btnPay = new Wisej.Web.Button();
             this.txtCarcNumber = new Wisej.Web.MaskedTextBox();
             this.pictureBox1 = new Wisej.Web.PictureBox();
-            this.timer1 = new Wisej.Web.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMonth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudYear)).BeginInit();
@@ -171,20 +169,19 @@ namespace E_Library.Dashboard.Components
             // 
             this.txtCarcNumber.CssStyle = "border-radius: 3px";
             this.txtCarcNumber.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.txtCarcNumber.InputType.Type = Wisej.Web.TextBoxType.Number;
             this.txtCarcNumber.LabelText = "Card Number";
             this.txtCarcNumber.Location = new System.Drawing.Point(54, 172);
             this.txtCarcNumber.Mask = "0000 0000 0000 0000 000";
-            this.txtCarcNumber.MaxLength = 19;
             this.txtCarcNumber.Name = "txtCarcNumber";
             this.txtCarcNumber.Padding = new Wisej.Web.Padding(12);
             this.txtCarcNumber.PromptChar = ' ';
             this.txtCarcNumber.Size = new System.Drawing.Size(325, 68);
             this.txtCarcNumber.TabIndex = 26;
-            componentTool3.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/credit-card.svg";
-            componentTool3.Position = Wisej.Web.LeftRightAlignment.Left;
+            this.txtCarcNumber.TextMaskFormat = Wisej.Web.MaskFormat.ExcludePromptAndLiterals;
+            componentTool1.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/credit-card.svg";
+            componentTool1.Position = Wisej.Web.LeftRightAlignment.Left;
             this.txtCarcNumber.Tools.AddRange(new Wisej.Web.ComponentTool[] {
-            componentTool3});
+            componentTool1});
             // 
             // pictureBox1
             // 
@@ -234,6 +231,5 @@ namespace E_Library.Dashboard.Components
         private Wisej.Web.Button btnPay;
         private Wisej.Web.MaskedTextBox txtCarcNumber;
         private Wisej.Web.PictureBox pictureBox1;
-        private Wisej.Web.Timer timer1;
     }
 }

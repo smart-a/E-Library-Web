@@ -24,7 +24,7 @@ namespace E_Library.Dashboard
 
         private void BookmarksControl_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void BookmarksControl_Appear(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace E_Library.Dashboard
             var books = bookmarkList.Select((b) =>
                  new BookDisplay
                  {
-                     Id = b.Id,
+                     Id = b.Book.Id,
                      Category = b.Book.Category.CategoryName,
                      BookName = b.Book.BookName,
                      Course = b.Book.Course.CourseName,
@@ -79,6 +79,7 @@ namespace E_Library.Dashboard
             {
                 BookDetails bookDetails = new BookDetails(MyParent, currentUser, currentBook);
                 bookDetails.ShowDialog();
+                LoadBooks();
             }
         }
 
@@ -95,8 +96,9 @@ namespace E_Library.Dashboard
                 LoadBooks();
                 return;
             }
-            var bookmarkList = _context.Bookmarks.Where((b) => b.User.Id == currentUser.Id &&
-               b.Book.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
+            var bookmarkList = _context.Bookmarks.ToList();
+            bookmarkList = bookmarkList.Where((b) => b.User.Id == currentUser.Id &&
+           b.Book.BookName.StartsWith(txtSearch.Text, StringComparison.OrdinalIgnoreCase)).ToList();
 
             LoadBooks(bookmarkList);
         }
@@ -104,7 +106,7 @@ namespace E_Library.Dashboard
         private void cbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearch.Clear();
-            if(cbCategory.SelectedIndex == 0)
+            if (cbCategory.SelectedIndex == 0)
             {
                 LoadBooks();
                 return;

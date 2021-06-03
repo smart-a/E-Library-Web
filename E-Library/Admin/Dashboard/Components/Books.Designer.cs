@@ -39,7 +39,6 @@ namespace E_Library.Admin.Dashboard.Components
             this.cbSub = new Wisej.Web.ComboBox();
             this.panelFile = new Wisej.Web.Panel();
             this.upload1 = new Wisej.Web.Upload();
-            this.btnView = new Wisej.Web.Button();
             this.label1 = new Wisej.Web.Label();
             this.btnSave = new Wisej.Web.Button();
             this.panel1.SuspendLayout();
@@ -167,7 +166,6 @@ namespace E_Library.Admin.Dashboard.Components
             this.panelFile.BackgroundImageSource = "resource.wx/Wisej.Ext.FontAwesome/cloud-upload.svg";
             this.panelFile.BorderStyle = Wisej.Web.BorderStyle.Solid;
             this.panelFile.Controls.Add(this.upload1);
-            this.panelFile.Controls.Add(this.btnView);
             this.panelFile.Controls.Add(this.label1);
             this.panelFile.CssStyle = "border-radius: 3px;";
             this.panelFile.ForeColor = System.Drawing.Color.FromArgb(214, 214, 214);
@@ -192,17 +190,6 @@ namespace E_Library.Admin.Dashboard.Components
             this.upload1.Text = "upload1";
             this.upload1.Visible = false;
             this.upload1.Uploaded += new Wisej.Web.UploadedEventHandler(this.upload1_Uploaded);
-            // 
-            // btnView
-            // 
-            this.btnView.BackColor = System.Drawing.Color.FromArgb(44, 84, 77);
-            this.btnView.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/eye.svg";
-            this.btnView.Location = new System.Drawing.Point(265, 2);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(34, 24);
-            this.btnView.TabIndex = 1;
-            this.btnView.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
             // 
             // label1
             // 
@@ -270,7 +257,6 @@ namespace E_Library.Admin.Dashboard.Components
         private Wisej.Web.Panel panelFile;
         private Wisej.Web.Label label1;
         private Wisej.Web.Button btnSave;
-        private Wisej.Web.Button btnView;
         private Wisej.Web.Upload upload1;
     }
 }

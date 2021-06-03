@@ -26,7 +26,10 @@ namespace E_Library.Login
 
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
         {
-            HandleProceed();
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                HandleProceed();
+            }
         }
 
         private void HandleProceed()

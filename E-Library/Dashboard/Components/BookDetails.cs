@@ -33,11 +33,10 @@ namespace E_Library.Dashboard.Components
         {
             CheckBookmarked();
             this.Text += $" - {_book.BookName}";
-            lblBookName.Text = _book.BookName;
+            lblBookName.Text = _book.BookName.ToUpper();
             lblCategory.Text = _book.Category.CategoryName;
             lblCourse.Text = _book.Course.CourseName;
             lblSub.Text = _book.Subscription.SubscriptionName;
-            lblAmount.Text = _book.Subscription.Amount.ToString("###,##0.00");
             if (_bookmark != null)
             {
                 cbBookmark.Checked = true;

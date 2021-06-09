@@ -39,15 +39,11 @@ namespace E_Library.Dashboard.Components
             this.panel3 = new Wisej.Web.Panel();
             this.lblSub = new Wisej.Web.Label();
             this.label7 = new Wisej.Web.Label();
-            this.panel4 = new Wisej.Web.Panel();
-            this.lblAmount = new Wisej.Web.Label();
-            this.label9 = new Wisej.Web.Label();
             this.btnView = new Wisej.Web.Button();
             this.cbBookmark = new Wisej.Web.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblBookName
@@ -147,40 +143,11 @@ namespace E_Library.Dashboard.Components
             this.label7.TabIndex = 0;
             this.label7.Text = "Group Sub:";
             // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = Wisej.Web.BorderStyle.Solid;
-            this.panel4.Controls.Add(this.lblAmount);
-            this.panel4.Controls.Add(this.label9);
-            this.panel4.Location = new System.Drawing.Point(34, 230);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(382, 44);
-            this.panel4.TabIndex = 4;
-            this.panel4.TabStop = true;
-            // 
-            // lblAmount
-            // 
-            this.lblAmount.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lblAmount.Location = new System.Drawing.Point(144, 11);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(228, 23);
-            this.lblAmount.TabIndex = 1;
-            this.lblAmount.Text = "Sub Price";
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.label9.Location = new System.Drawing.Point(12, 11);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(130, 23);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Sub Price:";
-            // 
             // btnView
             // 
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnView.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/eye.svg";
-            this.btnView.Location = new System.Drawing.Point(34, 300);
+            this.btnView.Location = new System.Drawing.Point(37, 239);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(44, 28);
             this.btnView.TabIndex = 5;
@@ -193,7 +160,7 @@ namespace E_Library.Dashboard.Components
             this.cbBookmark.Appearance = Wisej.Web.Appearance.Switch;
             this.cbBookmark.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cbBookmark.Font = new System.Drawing.Font("default", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.cbBookmark.Location = new System.Drawing.Point(289, 300);
+            this.cbBookmark.Location = new System.Drawing.Point(283, 239);
             this.cbBookmark.Name = "cbBookmark";
             this.cbBookmark.Size = new System.Drawing.Size(133, 24);
             this.cbBookmark.TabIndex = 6;
@@ -204,10 +171,9 @@ namespace E_Library.Dashboard.Components
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 350);
+            this.ClientSize = new System.Drawing.Size(448, 287);
             this.Controls.Add(this.cbBookmark);
             this.Controls.Add(this.btnView);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -224,7 +190,6 @@ namespace E_Library.Dashboard.Components
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,9 +207,6 @@ namespace E_Library.Dashboard.Components
         private Wisej.Web.Panel panel3;
         private Wisej.Web.Label lblSub;
         private Wisej.Web.Label label7;
-        private Wisej.Web.Panel panel4;
-        private Wisej.Web.Label lblAmount;
-        private Wisej.Web.Label label9;
         private Wisej.Web.Button btnView;
         private Wisej.Web.CheckBox cbBookmark;
     }

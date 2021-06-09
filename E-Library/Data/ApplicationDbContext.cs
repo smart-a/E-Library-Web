@@ -24,7 +24,7 @@ namespace E_Library.Data
         }
 #else
     public ApplicationDbContext()
-       : base("Data Source=SQL5104.site4now.net;Initial Catalog=db_a73b90_evoting;User Id=db_a73b90_evoting_admin;Password=Horlarlekhan1#")
+       : base("Data Source=SQL5053.site4now.net;Initial Catalog=db_a75c17_elibrary;User Id=db_a75c17_elibrary_admin;Password=Horlarlekhan1#")
         {
             var ad = this.UsersAccounts.Count();
             if(ad < 1)

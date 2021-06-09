@@ -1,5 +1,6 @@
 ﻿using System;
 using Wisej.Web;
+using System.IO;
 
 namespace E_Library.Admin.Dashboard
 {
@@ -16,30 +17,12 @@ namespace E_Library.Admin.Dashboard
             {
                 btnNavShow.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/times.svg";
                 btnNavShow.Tag = "hide";
-
-                //if (Application.ActiveProfile.Device == "Mobile")
-                //{
-                //    navigationBar1.Width = 200;
-                //}
-                //else
-                //{
-                //    navigationBar1.CompactView = false;
-                //}
                 navigationBar1.CompactView = false;
             }
             else if (btnNavShow.Tag.ToString() == "hide")
             {
                 btnNavShow.ImageSource = "resource.wx/Wisej.Ext.FontAwesome/bars.svg";
                 btnNavShow.Tag = "show";
-
-                //if (Application.ActiveProfile.Device == "Mobile")
-                //{
-                //    navigationBar1.Width = 0;
-                //}
-                //else
-                //{
-                //    navigationBar1.CompactView = true;
-                //}
                 navigationBar1.CompactView = true;
             }
         }
@@ -89,6 +72,12 @@ namespace E_Library.Admin.Dashboard
 
         private void AdminDashboard_Load(object sender, EventArgs e)
         {
+            var bookPath = $"{Application.MapPath("./")}/Books";
+            if (!Directory.Exists(bookPath))
+            {
+                Directory.CreateDirectory(bookPath);
+            }
+
             StudentsControl control = new StudentsControl();
             NavigateMenu(control);
         }

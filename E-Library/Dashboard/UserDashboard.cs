@@ -83,6 +83,7 @@ namespace E_Library.Dashboard
             if (currentUser.UserType == User.UserEnum.Student)
             {
                 btnUser.MenuItems["menuProfile"].Visible = false;
+                navLibrary.Visible = false;
             }
 
             LoadStatus();

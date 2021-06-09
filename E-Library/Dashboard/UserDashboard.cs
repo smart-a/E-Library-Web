@@ -80,12 +80,6 @@ namespace E_Library.Dashboard
             IndexControl control = new IndexControl(this, currentUser);
             NavigateMenu(control);
 
-            if (currentUser.UserType == User.UserEnum.Student)
-            {
-                btnUser.MenuItems["menuProfile"].Visible = false;
-                navLibrary.Visible = false;
-            }
-
             LoadStatus();
             CheckSub();
         }
@@ -138,6 +132,13 @@ namespace E_Library.Dashboard
         {
             btnUser.MenuItems[0].Text = currentUser.Fullname;
             btnUser.MenuItems[0].IconSource = "resource.wx/Wisej.Ext.FontAwesome/user.svg";
+
+            if (currentUser.UserType == User.UserEnum.Student)
+            {
+                btnUser.MenuItems["menuProfile"].Visible = false;
+                navLibrary.Visible = false;
+            }
+
         }
     }
 }

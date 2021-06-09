@@ -27,7 +27,7 @@ namespace E_Library.Dashboard
             lblWallet.Text = currentUser.Wallet.ToString("N###,##0.00");
             if(currentUser.UserType == User.UserEnum.Student)
             {
-                lblWallet.Text = "Student account";
+                lblWallet.Text = "Student's account";
             }
 
             var bookmarks = _context.Bookmarks.Where((b) => b.User.Id == currentUser.Id).Count();

@@ -2,9 +2,7 @@
 using E_Library.Data;
 using E_Library.Models;
 using System;
-using System.Data;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Wisej.Web;
 
@@ -36,12 +34,12 @@ namespace E_Library.Admin.Dashboard
 
             var users = usersList.Select((u) =>
                 new UserDisplay
-                { 
+                {
                     Id = u.Id,
-                    StudentNumber =u.StudentNumber,
+                    StudentNumber = u.StudentNumber,
                     Fullname = u.Fullname,
                     Gender = u.Gender,
-                    Level = u.Level 
+                    Level = u.Level
                 }).ToList();
 
             dataGridView1.DataSource = users;
@@ -63,7 +61,7 @@ namespace E_Library.Admin.Dashboard
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             var index = Guid.Parse(dataGridView1.CurrentRow[0].Value.ToString());
-            var currentUser = _context.Users.SingleOrDefault((u)=>u.Id==index);
+            var currentUser = _context.Users.SingleOrDefault((u) => u.Id == index);
             if (currentUser != null)
             {
                 DialogResult dialogResult;

@@ -25,7 +25,7 @@ namespace E_Library.Dashboard
         private void IndexControl_Load(object sender, EventArgs e)
         {
             lblWallet.Text = currentUser.Wallet.ToString("N###,##0.00");
-            if(currentUser.UserType == User.UserEnum.Student)
+            if (currentUser.UserType == User.UserEnum.Student)
             {
                 lblWallet.Text = "Student's account";
             }

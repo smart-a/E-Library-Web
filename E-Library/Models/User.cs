@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace E_Library.Models
 {
@@ -22,14 +19,14 @@ namespace E_Library.Models
         public string Phone { set; get; }
         public int Level { set; get; }
         public double Wallet { set; get; }
-        public UserEnum UserType  { set; get; }
+        public UserEnum UserType { set; get; }
         public string Password { set; get; }
 
 
         public enum UserEnum
         {
-           Student,
-           Member
+            Student,
+            Member
         }
     }
 

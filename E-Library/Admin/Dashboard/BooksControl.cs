@@ -112,9 +112,9 @@ namespace E_Library.Admin.Dashboard
                 return;
             }
             var bookList = _context.Books.ToList();
-            bookList =  bookList.Where((b) =>
-                b.BookName.StartsWith(search, StringComparison.OrdinalIgnoreCase) ||
-                b.Category.CategoryName.StartsWith(search, StringComparison.OrdinalIgnoreCase)).ToList();
+            bookList = bookList.Where((b) =>
+               b.BookName.StartsWith(search, StringComparison.OrdinalIgnoreCase) ||
+               b.Category.CategoryName.StartsWith(search, StringComparison.OrdinalIgnoreCase)).ToList();
 
             LoadBooks(bookList);
         }

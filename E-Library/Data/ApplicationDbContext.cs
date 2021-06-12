@@ -1,9 +1,7 @@
 ﻿using E_Library.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 
 namespace E_Library.Data
 {
@@ -15,12 +13,12 @@ namespace E_Library.Data
             : base("Server=(localdb)\\mssqllocaldb;Database=e_library;Trusted_Connection=True;MultipleActiveResultSets=true")
         {
             var ad = this.UsersAccounts.Count();
-            if(ad < 1)
+            if (ad < 1)
             {
                 this.UsersAccounts.Add(new UsersAccount { Id = Guid.NewGuid(), Username = "admin", Password = "admin" });
                 this.SaveChanges();
             }
-        
+
         }
 #else
     public ApplicationDbContext()
@@ -47,6 +45,6 @@ namespace E_Library.Data
         public DbSet<PaymentHistory> PaymentHistories { set; get; }
 
 
-        
+
     }
 }

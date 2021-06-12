@@ -1,6 +1,6 @@
 ﻿using System;
-using Wisej.Web;
 using System.IO;
+using Wisej.Web;
 
 namespace E_Library.Admin.Dashboard
 {
@@ -63,7 +63,7 @@ namespace E_Library.Admin.Dashboard
 
         private void btnUser_ItemClicked(object sender, MenuButtonItemClickedEventArgs e)
         {
-            if(e.Item.Name == "menuLogout")
+            if (e.Item.Name == "menuLogout")
             {
                 Application.Browser.LocalStorage.RemoveValue("e_library_admin");
                 Application.Navigate("/Admin");

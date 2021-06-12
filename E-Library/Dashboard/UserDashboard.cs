@@ -115,13 +115,13 @@ namespace E_Library.Dashboard
 
         private void btnUser_ItemClicked(object sender, MenuButtonItemClickedEventArgs e)
         {
-            if(e.Item.Name == "menuProfile")
+            if (e.Item.Name == "menuProfile")
             {
                 ProfileControl control = new ProfileControl(currentUser);
                 NavigateMenu(control);
             }
 
-            if(e.Item.Name == "menuLogout")
+            if (e.Item.Name == "menuLogout")
             {
                 Application.Browser.LocalStorage.RemoveValue("e_library");
                 Application.Navigate("/");

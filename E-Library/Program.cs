@@ -4,7 +4,6 @@ using E_Library.Dashboard;
 using E_Library.Helper;
 using E_Library.Login;
 using E_Library.Register;
-using System;
 using Wisej.Web;
 
 namespace E_Library
@@ -32,10 +31,10 @@ namespace E_Library
         {
             Application.Browser.LocalStorage.GetValue("e_library", (string token) =>
             {
-                if(token != null)
+                if (token != null)
                 {
                     var user = Auth.ValidateUser(JwtToken.DecodeToken(token));
-                    if(user != null)
+                    if (user != null)
                     {
                         Application.Navigate("/Dashboard");
                         return;
@@ -68,7 +67,7 @@ namespace E_Library
                 }
                 Application.Navigate("/");
             });
-            
+
         }
 
         static void Admin()

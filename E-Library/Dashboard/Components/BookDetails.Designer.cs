@@ -48,10 +48,11 @@ namespace E_Library.Dashboard.Components
             // 
             // lblBookName
             // 
+            this.lblBookName.AutoEllipsis = true;
             this.lblBookName.Font = new System.Drawing.Font("default", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.lblBookName.Location = new System.Drawing.Point(34, 12);
+            this.lblBookName.Location = new System.Drawing.Point(34, 3);
             this.lblBookName.Name = "lblBookName";
-            this.lblBookName.Size = new System.Drawing.Size(382, 40);
+            this.lblBookName.Size = new System.Drawing.Size(382, 71);
             this.lblBookName.TabIndex = 0;
             this.lblBookName.Text = "BOOK NAME";
             this.lblBookName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

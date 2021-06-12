@@ -26,7 +26,7 @@ namespace E_Library.Register
                     MessageBox.Show("All fields are required");
                     return;
                 }
-                if(txtPassword.Text != txtConfirmPassword.Text)
+                if (txtPassword.Text != txtConfirmPassword.Text)
                 {
                     MessageBox.Show("Password not matched");
                     txtConfirmPassword.Focus();
@@ -63,7 +63,7 @@ namespace E_Library.Register
 
         private bool IsValidInput()
         {
-            if(txtFullname.Text == "")
+            if (txtFullname.Text == "")
             {
                 txtFullname.Focus();
                 return false;

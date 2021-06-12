@@ -1,10 +1,10 @@
-﻿using System;
+﻿using E_Library.Dashboard.Components;
+using E_Library.Data;
+using E_Library.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Wisej.Web;
-using E_Library.Dashboard.Components;
-using E_Library.Data;
-using E_Library.Models;
 
 namespace E_Library.Dashboard
 {
@@ -25,7 +25,7 @@ namespace E_Library.Dashboard
 
         private void LibrayControl_Load(object sender, EventArgs e)
         {
-            if(currentUser.UserType == User.UserEnum.Student)
+            if (currentUser.UserType == User.UserEnum.Student)
             {
                 panelSub.Enabled = false;
             }
@@ -160,7 +160,7 @@ namespace E_Library.Dashboard
                 subBookList.AddRange(book);
             });
 
-            if (cbCategory.SelectedIndex >1)
+            if (cbCategory.SelectedIndex > 1)
             {
                 subBookList = new List<Book>();
                 currentSub.ForEach((s) =>

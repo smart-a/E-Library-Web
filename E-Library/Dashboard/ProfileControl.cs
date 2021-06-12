@@ -1,10 +1,10 @@
-﻿using System;
+﻿using E_Library.Dashboard.Components;
+using E_Library.Data;
+using E_Library.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Wisej.Web;
-using E_Library.Dashboard.Components;
-using E_Library.Data;
-using E_Library.Models;
 
 namespace E_Library.Dashboard
 {
@@ -98,7 +98,7 @@ namespace E_Library.Dashboard
                     _context.Entry(currentUser).State = System.Data.Entity.EntityState.Modified;
                     _context.SaveChanges();
 
-                    
+
                     _context.PaymentHistories.Add(new PaymentHistory
                     {
                         User = currentUser,
@@ -111,7 +111,7 @@ namespace E_Library.Dashboard
                     lblWallet.Text = currentUser.Wallet.ToString("N###,##0.00");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

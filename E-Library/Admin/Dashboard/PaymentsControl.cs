@@ -3,7 +3,6 @@ using E_Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Wisej.Web;
 
 namespace E_Library.Admin.Dashboard
 {
@@ -59,9 +58,9 @@ namespace E_Library.Admin.Dashboard
             var end = new DateTime(dtpTo.Value.Year, dtpTo.Value.Month, dtpTo.Value.Day);
 
             var hList = _context.PaymentHistories.ToList();
-            var histories = hList.Where((h)=> 
+            var histories = hList.Where((h) =>
                 start >= new DateTime(h.PaidAt.Year, h.PaidAt.Month, h.PaidAt.Day) &&
-                end  <= new DateTime(h.PaidAt.Year, h.PaidAt.Month, h.PaidAt.Day)).ToList();
+                end <= new DateTime(h.PaidAt.Year, h.PaidAt.Month, h.PaidAt.Day)).ToList();
 
             LoadHistory(histories);
         }

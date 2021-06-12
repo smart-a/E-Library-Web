@@ -76,7 +76,6 @@ namespace E_Library.Admin.Dashboard.Components
             // 
             // cbCategory
             // 
-            this.cbCategory.AutoCompleteMode = Wisej.Web.AutoCompleteMode.SuggestAppend;
             this.cbCategory.AutoSize = false;
             this.cbCategory.CssStyle = "padding: 10px;\r\nborder-radius: 3px;";
             this.cbCategory.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -109,7 +108,6 @@ namespace E_Library.Admin.Dashboard.Components
             // 
             // cbCourse
             // 
-            this.cbCourse.AutoCompleteMode = Wisej.Web.AutoCompleteMode.SuggestAppend;
             this.cbCourse.AutoSize = false;
             this.cbCourse.CssStyle = "padding: 10px;\r\nborder-radius: 3px";
             this.cbCourse.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -142,7 +140,6 @@ namespace E_Library.Admin.Dashboard.Components
             // 
             // cbSub
             // 
-            this.cbSub.AutoCompleteMode = Wisej.Web.AutoCompleteMode.SuggestAppend;
             this.cbSub.AutoSize = false;
             this.cbSub.CssStyle = "padding: 10px;\r\nborder-radius: 3px";
             this.cbSub.Font = new System.Drawing.Font("default", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);

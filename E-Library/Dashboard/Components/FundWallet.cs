@@ -13,7 +13,7 @@ namespace E_Library.Dashboard.Components
 
         public FundWallet()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private void nudAmount_ValueChanged(object sender, EventArgs e)
@@ -33,22 +33,22 @@ namespace E_Library.Dashboard.Components
 
         private void btnPay_Click(object sender, EventArgs e)
         {
-            if(nudAmount.Value < 1)
+            if (nudAmount.Value < 1)
             {
                 nudAmount.Focus();
                 return;
             }
-            if(txtCarcNumber.Text.Length < 16 || txtCarcNumber.Text.Length > 19)
+            if (txtCarcNumber.Text.Length < 16 || txtCarcNumber.Text.Length > 19)
             {
                 txtCarcNumber.Focus();
                 return;
             }
-            if(txtCVV.TextLength < 3)
+            if (txtCVV.TextLength < 3)
             {
                 txtCVV.Focus();
                 return;
             }
-            if(nudMonth.Value < DateTime.Now.Month && nudYear.Value == DateTime.Now.Year)
+            if (nudMonth.Value < DateTime.Now.Month && nudYear.Value == DateTime.Now.Year)
             {
                 MessageBox.Show("Your card has expired, please use a valid card");
                 return;

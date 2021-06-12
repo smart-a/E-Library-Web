@@ -47,7 +47,7 @@ namespace E_Library.Dashboard.Components
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (cbSubscription.Text == "" || txtAmount.Text == "0")
+            if (cbSubscription.SelectedIndex < 0)
             {
                 cbSubscription.Focus();
                 return;
@@ -66,7 +66,7 @@ namespace E_Library.Dashboard.Components
                     MessageBox.Show("You have an existing record of this subscription");
                     return;
                 }
-                
+
                 var sub = _context.Subscriptions.SingleOrDefault((s) => s.Id == selectedSub);
                 var user = _context.Users.SingleOrDefault((u) => u.Id == currentUser.Id);
                 UserSubscription newSub = new UserSubscription

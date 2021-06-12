@@ -98,7 +98,7 @@ namespace E_Library.Admin.Dashboard.Components
                 txtFullname.Focus();
                 return false;
             }
-            if (cbLevel.Text == "")
+            if (cbLevel.SelectedIndex < 0)
             {
                 cbLevel.Focus();
                 return false;

@@ -1,12 +1,11 @@
-﻿using System;
+﻿using E_Library.Data;
+using E_Library.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Web;
 using Wisej.Web;
-using System.IO;
-using E_Library.Models;
-using E_Library.Data;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
 
 namespace E_Library.Admin.Dashboard.Components
 {
@@ -54,13 +53,13 @@ namespace E_Library.Admin.Dashboard.Components
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!IsValidInput())
-            {
-                MessageBox.Show("All fields are required");
-                return;
-            }
             try
             {
+                if (!IsValidInput())
+                {
+                    MessageBox.Show("All fields are required");
+                    return;
+                }
                 if (_book == null)
                 {
                     Book book = new Book
@@ -159,7 +158,7 @@ namespace E_Library.Admin.Dashboard.Components
 
         private bool IsValidInput()
         {
-            if (cbCategory.Text == "")
+            if (cbCategory.SelectedIndex < 0)
             {
                 cbCategory.Focus();
                 return false;
@@ -169,12 +168,12 @@ namespace E_Library.Admin.Dashboard.Components
                 txtBookName.Focus();
                 return false;
             }
-            if (cbCourse.Text == "")
+            if (cbCourse.SelectedIndex < 0)
             {
                 cbCourse.Focus();
                 return false;
             }
-            if (cbSub.Text == "")
+            if (cbSub.SelectedIndex < 0)
             {
                 cbSub.Focus();
                 return false;

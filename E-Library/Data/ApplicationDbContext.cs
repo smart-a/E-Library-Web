@@ -10,7 +10,7 @@ namespace E_Library.Data
 
 #if DEBUG
         public ApplicationDbContext()
-            : base("Server=(localdb)\\mssqllocaldb;Database=e_library;Trusted_Connection=True;MultipleActiveResultSets=true")
+            : base("Server=(localdb)\\projects;Database=e_library;Trusted_Connection=True;MultipleActiveResultSets=true") //mssqllocaldb
         {
             var ad = this.UsersAccounts.Count();
             if (ad < 1)

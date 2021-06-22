@@ -41,6 +41,7 @@ namespace E_Library.Admin.Dashboard
                      Amount = b.Subscription.Amount.ToString("###,##0.00")
                  }).ToList();
 
+            dataGridView1.Columns.Clear();
             dataGridView1.DataSource = books;
             dataGridView1.Columns["Id"].Visible = false;
 

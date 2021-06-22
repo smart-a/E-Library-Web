@@ -188,6 +188,7 @@ namespace E_Library.Login
             this.btnProceed.Text = "Proceed    ";
             this.btnProceed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnProceed.TextImageRelation = Wisej.Web.TextImageRelation.TextBeforeImage;
+            this.btnProceed.Click += new System.EventHandler(this.btnProceed_Click);
             // 
             // txtPassword
             // 

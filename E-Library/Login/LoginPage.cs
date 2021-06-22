@@ -75,7 +75,7 @@ namespace E_Library.Login
             }
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnProceed_Click(object sender, EventArgs e)
         {
             HandleProceed();
         }
